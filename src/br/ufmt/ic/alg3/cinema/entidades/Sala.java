@@ -3,17 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.ufmt.ic.alg3.cinema.entidade;
+package br.ufmt.ic.alg3.cinema.entidades;
 
 /**
  *
  * @author henrique
  */
-public class Assento {
+public class Sala {
     
     private int id;
-    private Sala sala;
-    private Ingresso ingresso;
+    private Sessao sessao;
+    private Assento assentos[];
 
     public int getId() {
         return id;
@@ -23,20 +23,20 @@ public class Assento {
         this.id = id;
     }
 
-    public Sala getSala() {
-        return sala;
+    public Sessao getSessao() {
+        return sessao;
     }
 
-    public void setSala(Sala sala) {
-        this.sala = sala;
+    public void setSessao(Sessao sessao) {
+        this.sessao = sessao;
     }
 
-    public Ingresso getIngresso() {
-        return ingresso;
+    public Assento[] getAssentos() {
+        return assentos;
     }
 
-    public void setIngresso(Ingresso ingresso) {
-        this.ingresso = ingresso;
+    public void setAssentos(Assento[] assentos) {
+        this.assentos = assentos;
     }
     
     
