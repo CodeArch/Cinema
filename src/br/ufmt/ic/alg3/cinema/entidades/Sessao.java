@@ -5,6 +5,7 @@
  */
 package br.ufmt.ic.alg3.cinema.entidades;
 
+import java.io.Serializable;
 import java.sql.Time;
 import java.util.Date;
 
@@ -12,13 +13,12 @@ import java.util.Date;
  *
  * @author henrique
  */
-public class Sessao {
+public class Sessao implements Serializable {
  
     private int id;
     private Filme filme;
     private Sala sala;
-    private Time horario;
-    private Date data;
+    private Date dataHora;
 
     public int getId() {
         return id;
@@ -44,22 +44,12 @@ public class Sessao {
         this.sala = sala;
     }
 
-    public Time getHorario() {
-        return horario;
+    public Date getDataHora() {
+        return dataHora;
     }
 
-    public void setHorario(Time horario) {
-        this.horario = horario;
+    public void setDataHora(Date dataHora) {
+        this.dataHora = dataHora;
     }
-
-    public Date getData() {
-        return data;
-    }
-
-    public void setData(Date data) {
-        this.data = data;
-    }
-    
-    
     
 }

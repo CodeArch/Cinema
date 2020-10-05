@@ -5,11 +5,13 @@
  */
 package br.ufmt.ic.alg3.cinema.entidades;
 
+import java.io.Serializable;
+
 /**
  *
  * @author henrique
  */
-public class Sala {
+public class Sala implements Serializable {
     
     private int id;
     private Sessao sessao;
