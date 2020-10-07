@@ -24,7 +24,7 @@ import java.util.logging.Logger;
 public class FilmeDAOImplArq implements FilmeDAO {
 
     private final String filename = "filmes.dat";
-    private List<Filme> filmes = new ArrayList<Filme>();
+    private List<Filme> filmes = new ArrayList<>();
     
     private void salvarArquivo() {
         try {

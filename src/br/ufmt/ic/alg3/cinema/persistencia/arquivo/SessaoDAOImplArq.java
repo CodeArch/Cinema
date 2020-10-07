@@ -24,7 +24,7 @@ import java.util.logging.Logger;
 public class SessaoDAOImplArq implements SessaoDAO {
 
     private final String filename = "sessoes.dat";
-    private List<Sessao> sessoes = new ArrayList<Sessao>();
+    private List<Sessao> sessoes = new ArrayList<>();
     
     private void salvarArquivo() {
         try {
