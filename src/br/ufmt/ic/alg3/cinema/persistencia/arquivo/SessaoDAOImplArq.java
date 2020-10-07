@@ -117,6 +117,7 @@ public class SessaoDAOImplArq implements SessaoDAO {
 
     @Override
     public List<Sessao> listar() {
+        carregarArquivo();
         return sessoes;
     }
     

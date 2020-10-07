@@ -119,8 +119,8 @@ public class IngressoDAOImplArq implements IngressoDAO{
 
     @Override
     public List<Ingresso> listar() {
+        carregarArquivo();
         return ingressos;
-
     }
 
 }

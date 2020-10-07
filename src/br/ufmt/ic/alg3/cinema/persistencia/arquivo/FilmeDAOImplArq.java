@@ -118,6 +118,7 @@ public class FilmeDAOImplArq implements FilmeDAO {
 
     @Override
     public List<Filme> listar() {
+        carregarArquivo();
         return filmes;
     }
     

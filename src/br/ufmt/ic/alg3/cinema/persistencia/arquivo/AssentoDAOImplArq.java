@@ -119,6 +119,7 @@ public class AssentoDAOImplArq implements AssentoDAO {
 
     @Override
     public List<Assento> listar() {
+        carregarArquivo();
         return assentos;
     }
     

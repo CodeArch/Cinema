@@ -117,6 +117,7 @@ public class SalaDAOImplArq implements SalaDAO {
 
     @Override
     public List<Sala> listar() {
+        carregarArquivo();
         return salas;
     }
     
