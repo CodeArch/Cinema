@@ -5,10 +5,23 @@
  */
 package br.ufmt.ic.alg3.cinema.persistencia;
 
+import br.ufmt.ic.alg3.cinema.entidades.Funcionario;
+import java.util.List;
+
 /**
  *
  * @author henrique
  */
 public interface FuncionarioDAO {
+    
+    public void inserir(Funcionario funcionario);
+    
+    public void editar(Funcionario funcionario);
+    
+    public boolean remover(int id);
+    
+    public Funcionario getById(int id);
+    
+    public List<Funcionario> listar();
     
 }
