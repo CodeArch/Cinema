@@ -6,7 +6,6 @@
 package br.ufmt.ic.alg3.cinema.entidades;
 
 import java.io.Serializable;
-import java.sql.Time;
 import java.util.Date;
 
 /**
