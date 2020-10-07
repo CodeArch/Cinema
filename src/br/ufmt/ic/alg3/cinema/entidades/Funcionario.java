@@ -5,11 +5,13 @@
  */
 package br.ufmt.ic.alg3.cinema.entidades;
 
+import java.io.Serializable;
+
 /**
  *
  * @author henrique
  */
-public class Funcionario {
+public class Funcionario implements Serializable {
 
     private int id;
     private String nome;
