@@ -5,10 +5,23 @@
  */
 package br.ufmt.ic.alg3.cinema.persistencia;
 
+import br.ufmt.ic.alg3.cinema.entidades.Assento;
+import java.util.List;
+
 /**
  *
  * @author henrique
  */
 public interface AssentoDAO {
+    
+    public void inserir(Assento assento);
+    
+    public void editar(Assento assento);
+    
+    public boolean remover(int id);
+    
+    public Assento getById(int id);
+    
+    public List<Assento> listar();
     
 }
