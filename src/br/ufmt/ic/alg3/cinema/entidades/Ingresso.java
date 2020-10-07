@@ -5,13 +5,14 @@
  */
 package br.ufmt.ic.alg3.cinema.entidades;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 /**
  *
  * @author henrique
  */
-public class Ingresso {
+public class Ingresso implements Serializable {
  
     private int id;
     private Sala sala;
