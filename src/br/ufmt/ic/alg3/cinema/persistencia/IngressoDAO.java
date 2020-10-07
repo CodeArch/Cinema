@@ -5,10 +5,23 @@
  */
 package br.ufmt.ic.alg3.cinema.persistencia;
 
+import br.ufmt.ic.alg3.cinema.entidades.Ingresso;
+import java.util.List;
+
 /**
  *
  * @author henrique
  */
 public interface IngressoDAO {
+    
+    public void inserir(Ingresso ingresso);
+    
+    public void editar(Ingresso ingresso);
+    
+    public boolean remover(int id);
+    
+    public Ingresso getById(int id);
+    
+    public List<Ingresso> listar();
     
 }
