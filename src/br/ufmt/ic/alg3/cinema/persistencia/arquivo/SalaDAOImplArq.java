@@ -23,8 +23,8 @@ import java.util.logging.Logger;
  */
 public class SalaDAOImplArq implements SalaDAO {
 
-    public final String filename = "salas.dat";
-    public List<Sala> salas = new ArrayList<>();
+    private final String filename = "salas.dat";
+    private List<Sala> salas = new ArrayList<>();
     
     private void salvarArquivo() {
         try {
