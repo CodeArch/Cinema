@@ -75,22 +75,49 @@ public class SessaoDAOImplArq implements SessaoDAO {
 
     @Override
     public void editar(Sessao sessao) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        carregarArquivo();
+        
+        for (Sessao s : sessoes) {
+            if (s.getId() == sessao.getId()) {
+                sessoes.set(s.getId(), sessao);
+                salvarArquivo();
+                break;
+            }
+        }
     }
 
     @Override
     public boolean remover(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        carregarArquivo();
+        
+        for (Sessao s : sessoes) {
+            if (s.getId() == id) {
+                sessoes.remove(s);
+                salvarArquivo();
+                
+                return true;
+            }
+        }
+        
+        return false;
     }
 
     @Override
     public Sessao getById(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        carregarArquivo();
+        
+        for (Sessao s : sessoes) {
+            if (s.getId() == id) {
+                return s;
+            }
+        }
+        
+        return null;
     }
 
     @Override
     public List<Sessao> listar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return sessoes;
     }
     
 }

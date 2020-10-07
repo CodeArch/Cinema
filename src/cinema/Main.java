@@ -40,6 +40,7 @@ public class Main {
         
         SessaoDAO banco2 = new SessaoDAOImplArq();
         banco2.inserir(s);
+        System.out.println(banco2.getById(0).toString());
         
     }
     
