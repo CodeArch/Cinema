@@ -30,7 +30,8 @@ public class JFramePrincipal extends javax.swing.JFrame {
         jPanelConteudo = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItemFilme = new javax.swing.JMenuItem();
+        jMenuItemSessao = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(800, 600));
@@ -42,13 +43,21 @@ public class JFramePrincipal extends javax.swing.JFrame {
 
         jMenu1.setText("File");
 
-        jMenuItem1.setText("Filme");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItemFilme.setText("Filme");
+        jMenuItemFilme.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                jMenuItemFilmeActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem1);
+        jMenu1.add(jMenuItemFilme);
+
+        jMenuItemSessao.setText("Sessão");
+        jMenuItemSessao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemSessaoActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItemSessao);
 
         jMenuBar1.add(jMenu1);
 
@@ -57,13 +66,19 @@ public class JFramePrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        // TODO add your handling code here:
+    private void jMenuItemFilmeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemFilmeActionPerformed
         jPanelConteudo.removeAll();
         jPanelConteudo.add(new JPanelFilme());
         jPanelConteudo.setVisible(false);
         jPanelConteudo.setVisible(true);
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }//GEN-LAST:event_jMenuItemFilmeActionPerformed
+
+    private void jMenuItemSessaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemSessaoActionPerformed
+        jPanelConteudo.removeAll();
+        jPanelConteudo.add(new JPanelSessao());
+        jPanelConteudo.setVisible(false);
+        jPanelConteudo.setVisible(true);
+    }//GEN-LAST:event_jMenuItemSessaoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -104,7 +119,8 @@ public class JFramePrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItemFilme;
+    private javax.swing.JMenuItem jMenuItemSessao;
     private javax.swing.JPanel jPanelConteudo;
     // End of variables declaration//GEN-END:variables
 }
