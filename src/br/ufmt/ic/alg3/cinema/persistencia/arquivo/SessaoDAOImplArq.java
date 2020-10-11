@@ -79,7 +79,8 @@ public class SessaoDAOImplArq implements SessaoDAO {
         
         for (Sessao s : sessoes) {
             if (s.getId() == sessao.getId()) {
-                sessoes.set(s.getId(), sessao);
+                int index = sessoes.indexOf(s);
+                sessoes.set(index, sessao);
                 salvarArquivo();
                 break;
             }

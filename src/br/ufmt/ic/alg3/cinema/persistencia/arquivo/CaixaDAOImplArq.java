@@ -80,7 +80,8 @@ public class CaixaDAOImplArq implements CaixaDAO {
         
         for (Caixa caixa1 : caixas) {
             if (caixa1.getId() == caixa.getId()) {
-                caixas.set(caixa1.getId(), caixa);
+                int index = caixas.indexOf(caixa1);
+                caixas.set(index, caixa);
                 salvarArquivo();
                 break;
             }

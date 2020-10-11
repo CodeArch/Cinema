@@ -80,7 +80,8 @@ public class FuncionarioDAOImplArq implements FuncionarioDAO {
         
         for (Funcionario funcionario1 : funcionarios) {
             if (funcionario1.getId() == funcionario.getId()) {
-                funcionarios.set(funcionario1.getId(), funcionario);
+                int index = funcionarios.indexOf(funcionario1);
+                funcionarios.set(index, funcionario);
                 salvarArquivo();
                 break;
             }

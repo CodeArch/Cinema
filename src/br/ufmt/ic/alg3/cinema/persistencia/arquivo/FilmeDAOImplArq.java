@@ -79,7 +79,8 @@ public class FilmeDAOImplArq implements FilmeDAO {
         
         for (Filme filme1 : filmes) {
             if (filme1.getId() == filme.getId()) {
-                filmes.set(filme1.getId(), filme);
+                int index = filmes.indexOf(filme1);
+                filmes.set(index, filme);
                 salvarArquivo();
                 break;
             }

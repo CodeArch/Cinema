@@ -80,7 +80,8 @@ public class IngressoDAOImplArq implements IngressoDAO{
         
         for (Ingresso ingresso1 : ingressos) {
             if (ingresso1.getId() == ingresso.getId()) {
-                ingressos.set(ingresso1.getId(), ingresso);
+                int index = ingressos.indexOf(ingresso1);
+                ingressos.set(index, ingresso);
                 salvarArquivo();
                 break;
             }
