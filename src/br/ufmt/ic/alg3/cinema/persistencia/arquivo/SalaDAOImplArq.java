@@ -80,7 +80,8 @@ public class SalaDAOImplArq implements SalaDAO {
         
         for (Sala sala1 : salas) {
             if (sala1.getId() == sala.getId()) {
-                salas.set(sala1.getId(), sala);
+                int index = salas.indexOf(sala1);
+                salas.set(index, sala);
                 salvarArquivo();
                 break;
             }
@@ -95,6 +96,8 @@ public class SalaDAOImplArq implements SalaDAO {
         for (Sala sala : salas) {
             if (sala.getId() == id) {
                 salas.remove(sala);
+                salvarArquivo();
+                
                 return true;
             }
         }
