@@ -77,7 +77,7 @@ public class JPanelFilme extends javax.swing.JPanel {
 
         setPreferredSize(new java.awt.Dimension(640, 480));
 
-        jLabel1.setText("Id:");
+        jLabel1.setText("ID:");
 
         jLabel2.setText("Nome:");
 
