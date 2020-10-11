@@ -32,6 +32,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         jMenuItemFilme = new javax.swing.JMenuItem();
         jMenuItemSessao = new javax.swing.JMenuItem();
+        jMenuItemSala = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(800, 600));
@@ -59,6 +60,14 @@ public class JFramePrincipal extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItemSessao);
 
+        jMenuItemSala.setText("Sala");
+        jMenuItemSala.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemSalaActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItemSala);
+
         jMenuBar1.add(jMenu1);
 
         setJMenuBar(jMenuBar1);
@@ -79,6 +88,13 @@ public class JFramePrincipal extends javax.swing.JFrame {
         jPanelConteudo.setVisible(false);
         jPanelConteudo.setVisible(true);
     }//GEN-LAST:event_jMenuItemSessaoActionPerformed
+
+    private void jMenuItemSalaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemSalaActionPerformed
+        jPanelConteudo.removeAll();
+        jPanelConteudo.add(new JPanelSala());
+        jPanelConteudo.setVisible(false);
+        jPanelConteudo.setVisible(true);
+    }//GEN-LAST:event_jMenuItemSalaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -120,6 +136,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItemFilme;
+    private javax.swing.JMenuItem jMenuItemSala;
     private javax.swing.JMenuItem jMenuItemSessao;
     private javax.swing.JPanel jPanelConteudo;
     // End of variables declaration//GEN-END:variables
