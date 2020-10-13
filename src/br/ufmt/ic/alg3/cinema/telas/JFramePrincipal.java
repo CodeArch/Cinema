@@ -34,6 +34,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
         jMenuItemSessao = new javax.swing.JMenuItem();
         jMenuItemSala = new javax.swing.JMenuItem();
         jMenuItemIngresso = new javax.swing.JMenuItem();
+        jMenuItemCaixa = new javax.swing.JMenuItem();
         jMenuItemFuncionario = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -77,6 +78,14 @@ public class JFramePrincipal extends javax.swing.JFrame {
             }
         });
         jMenu1.add(jMenuItemIngresso);
+
+        jMenuItemCaixa.setText("Caixa");
+        jMenuItemCaixa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemCaixaActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItemCaixa);
 
         jMenuItemFuncionario.setText("Funcionário");
         jMenuItemFuncionario.addActionListener(new java.awt.event.ActionListener() {
@@ -128,6 +137,13 @@ public class JFramePrincipal extends javax.swing.JFrame {
         jPanelConteudo.setVisible(true);
     }//GEN-LAST:event_jMenuItemFuncionarioActionPerformed
 
+    private void jMenuItemCaixaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemCaixaActionPerformed
+        jPanelConteudo.removeAll();
+        jPanelConteudo.add(new JPanelCaixa());
+        jPanelConteudo.setVisible(false);
+        jPanelConteudo.setVisible(true);
+    }//GEN-LAST:event_jMenuItemCaixaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -167,6 +183,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItemCaixa;
     private javax.swing.JMenuItem jMenuItemFilme;
     private javax.swing.JMenuItem jMenuItemFuncionario;
     private javax.swing.JMenuItem jMenuItemIngresso;

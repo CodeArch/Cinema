@@ -3,11 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/henrique/Documentos/Universidade/3º%20Semestre/Algoritmos%20III/Projeto%20Final/Sistema%20de%20Cinema/Cinema/src/br/ufmt/ic/alg3/cinema/telas/JPanelFilme.java</file>
-            <file>file:/home/henrique/Documentos/Universidade/3º%20Semestre/Algoritmos%20III/Projeto%20Final/Sistema%20de%20Cinema/Cinema/src/br/ufmt/ic/alg3/cinema/entidades/Ingresso.java</file>
+            <file>file:/home/henrique/Documentos/Universidade/3º%20Semestre/Algoritmos%20III/Projeto%20Final/Sistema%20de%20Cinema/Cinema/src/br/ufmt/ic/alg3/cinema/telas/JPanelCaixa.java</file>
             <file>file:/home/henrique/Documentos/Universidade/3º%20Semestre/Algoritmos%20III/Projeto%20Final/Sistema%20de%20Cinema/Cinema/src/br/ufmt/ic/alg3/cinema/telas/JFramePrincipal.java</file>
-            <file>file:/home/henrique/Documentos/Universidade/3º%20Semestre/Algoritmos%20III/Projeto%20Final/Sistema%20de%20Cinema/Cinema/src/br/ufmt/ic/alg3/cinema/telas/JPanelIngresso.java</file>
-            <file>file:/home/henrique/Documentos/Universidade/3º%20Semestre/Algoritmos%20III/Projeto%20Final/Sistema%20de%20Cinema/Cinema/src/br/ufmt/ic/alg3/cinema/persistencia/arquivo/FilmeDAOImplArq.java</file>
+            <file>file:/home/henrique/Documentos/Universidade/3º%20Semestre/Algoritmos%20III/Projeto%20Final/Sistema%20de%20Cinema/Cinema/src/br/ufmt/ic/alg3/cinema/entidades/Caixa.java</file>
+            <file>file:/home/henrique/Documentos/Universidade/3º%20Semestre/Algoritmos%20III/Projeto%20Final/Sistema%20de%20Cinema/Cinema/src/br/ufmt/ic/alg3/cinema/telas/JPanelFilme.java</file>
         </group>
     </open-files>
 </project-private>
