@@ -6,8 +6,13 @@
 package br.ufmt.ic.alg3.cinema.telas;
 
 import br.ufmt.ic.alg3.cinema.entidades.Ingresso;
+import br.ufmt.ic.alg3.cinema.persistencia.AssentoDAO;
 import br.ufmt.ic.alg3.cinema.persistencia.IngressoDAO;
+import br.ufmt.ic.alg3.cinema.persistencia.SalaDAO;
+import br.ufmt.ic.alg3.cinema.persistencia.arquivo.AssentoDAOImplArq;
 import br.ufmt.ic.alg3.cinema.persistencia.arquivo.IngressoDAOImplArq;
+import br.ufmt.ic.alg3.cinema.persistencia.arquivo.SalaDAOImplArq;
+import java.math.BigDecimal;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
@@ -18,6 +23,8 @@ import javax.swing.table.DefaultTableModel;
 public class JPanelIngresso extends javax.swing.JPanel {
 
     private IngressoDAO ingressoDAO = new IngressoDAOImplArq();
+    private SalaDAO salaDAO = new SalaDAOImplArq();
+    private AssentoDAO assentoDAO = new AssentoDAOImplArq();
     
     /**
      * Creates new form JPanelIngresso
@@ -42,10 +49,17 @@ public class JPanelIngresso extends javax.swing.JPanel {
         for (Ingresso ingresso : ingressos) {
             Object[] linha = new Object[5];
             linha[0] = ingresso.getId();
-            linha[1] = ingresso.getSala();
+            
+            if (ingresso.getSala() != null) {
+                linha[1] = ingresso.getSala().getId();
+            }
+
             linha[2] = ingresso.getValor();
             linha[3] = ingresso.getTipo();
-            linha[4] = ingresso.getAssentoReservado();
+            
+            if (ingresso.getAssentoReservado() != null) {
+                linha[4] = ingresso.getAssentoReservado().getId();
+            }
             
             tableModel.addRow(linha);
         }
@@ -131,8 +145,18 @@ public class JPanelIngresso extends javax.swing.JPanel {
         });
 
         jButtonEditar.setText("Editar");
+        jButtonEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEditarActionPerformed(evt);
+            }
+        });
 
         jButtonExcluir.setText("Excluir");
+        jButtonExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonExcluirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -209,14 +233,87 @@ public class JPanelIngresso extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLimparActionPerformed
-        
+        jTextFieldId.setText("");
+        jTextFieldSala.setText("");
+        jTextFieldValor.setText("");
+        jRadioButtonInteira.setSelected(true);
+        jTextFieldAssento.setText("");
     }//GEN-LAST:event_jButtonLimparActionPerformed
 
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
         Ingresso novoIngresso = new Ingresso();
         
-        novoIngresso.setId(Integer.parseInt(jTextFieldId.getText()));
+        int id = Integer.parseInt(jTextFieldId.getText());
+        novoIngresso.setId(id);
+
+        int idSala = Integer.parseInt(jTextFieldSala.getText());
+        novoIngresso.setSala(salaDAO.getById(idSala));
+        
+        BigDecimal valor = new BigDecimal(jTextFieldValor.getText());
+        novoIngresso.setValor(valor);
+        
+        if (jRadioButtonInteira.isSelected()) {
+            novoIngresso.setTipo('I');
+        } else {
+            novoIngresso.setTipo('M');
+        }
+        
+        int idAssento = Integer.parseInt(jTextFieldAssento.getText());
+        novoIngresso.setAssentoReservado(assentoDAO.getById(idAssento));
+        
+        if (ingressoDAO.getById(id) == null) {
+            ingressoDAO.inserir(novoIngresso);
+        } else {
+            ingressoDAO.editar(novoIngresso);
+        }
+        
+        jButtonLimparActionPerformed(evt);
+        carregarTabela();
+        
     }//GEN-LAST:event_jButtonSalvarActionPerformed
+
+    private void jButtonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarActionPerformed
+        int linha = jTableIngresso.getSelectedRow();
+        
+        if (linha != -1) {
+            int id = (int) jTableIngresso.getValueAt(linha, 0);
+            
+            Ingresso ingresso = ingressoDAO.getById(id);
+            
+            jTextFieldId.setText(Integer.toString(ingresso.getId()));
+            
+            if (ingresso.getSala() != null) {
+                jTextFieldSala.setText(Integer.toString(ingresso.getSala().getId()));
+            } else {
+                jTextFieldSala.setText("");
+            }
+            
+            jTextFieldValor.setText(ingresso.getValor().toString());
+            
+            if (ingresso.getTipo() == 'I') {
+                jRadioButtonInteira.setSelected(true);
+            } else {
+                jRadioButtonMeia.setSelected(true);
+            }
+            
+            if (ingresso.getAssentoReservado() != null) {
+                jTextFieldAssento.setText(Integer.toString(ingresso.getAssentoReservado().getId()));
+            } else {
+                jTextFieldAssento.setText("");
+            }
+        }
+    }//GEN-LAST:event_jButtonEditarActionPerformed
+
+    private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
+        int[] linhas = jTableIngresso.getSelectedRows();
+        
+        for (int linha : linhas) {
+            int id = (int) jTableIngresso.getValueAt(linha, 0);
+            ingressoDAO.remover(id);
+        }
+        
+        carregarTabela();
+    }//GEN-LAST:event_jButtonExcluirActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
