@@ -189,11 +189,11 @@ public class JPanelSala extends javax.swing.JPanel {
         
         sala.setId(id);
         
-        int cont = 1;
+        int cont = 0;
         Assento[] assentos = new Assento[quantAssentos];
         for (Assento assento : assentos) {
             assento = new Assento();
-            assento.setId(cont * id * quantAssentos);
+            assento.setId(cont);
             assento.setSala(sala);
             
             assentoDAO.inserir(assento);
@@ -233,6 +233,13 @@ public class JPanelSala extends javax.swing.JPanel {
         
         for (int linha : linhas) {
             int id = (int) jTableSala.getValueAt(linha, 0);
+            
+            Sala salaAExcluir = salaDAO.getById(id);
+            
+            for (int i = 0; i < salaAExcluir.getAssentos().length; i++) {
+                assentoDAO.remover(i, salaAExcluir);
+            }
+            
             salaDAO.remover(id);
         }
         

@@ -6,6 +6,7 @@
 package br.ufmt.ic.alg3.cinema.persistencia.arquivo;
 
 import br.ufmt.ic.alg3.cinema.entidades.Assento;
+import br.ufmt.ic.alg3.cinema.entidades.Sala;
 import br.ufmt.ic.alg3.cinema.persistencia.AssentoDAO;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -57,12 +58,14 @@ public class AssentoDAOImplArq implements AssentoDAO {
         
         boolean existe = false;
         for (Assento assento1 : assentos) {
-            if (assento1.getId() == assento.getId()) {
+            if (assento1.getId() == assento.getId() &&
+                    assento1.getSala().getId() == assento.getSala().getId())
+            {
                 existe = true;
                 break;
             }
+
         }
-        
         if (!existe) {
             assentos.add(assento);
             salvarArquivo();
@@ -88,11 +91,11 @@ public class AssentoDAOImplArq implements AssentoDAO {
     }
 
     @Override
-    public boolean remover(int id) {
+    public boolean remover(int id, Sala sala) {
         carregarArquivo();
         
         for (Assento assento : assentos) {
-            if (assento.getId() == id) {
+            if (assento.getId() == id && assento.getSala().getId() == sala.getId()) {
                 assentos.remove(assento);
                 salvarArquivo();
                 
