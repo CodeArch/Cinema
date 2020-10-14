@@ -33,6 +33,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
         jMenuItemFilme = new javax.swing.JMenuItem();
         jMenuItemSessao = new javax.swing.JMenuItem();
         jMenuItemSala = new javax.swing.JMenuItem();
+        jMenuItemListarAssentos = new javax.swing.JMenuItem();
         jMenuItemIngresso = new javax.swing.JMenuItem();
         jMenuItemCaixa = new javax.swing.JMenuItem();
         jMenuItemFuncionario = new javax.swing.JMenuItem();
@@ -70,6 +71,14 @@ public class JFramePrincipal extends javax.swing.JFrame {
             }
         });
         jMenu1.add(jMenuItemSala);
+
+        jMenuItemListarAssentos.setText("Listar Assentos");
+        jMenuItemListarAssentos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemListarAssentosActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItemListarAssentos);
 
         jMenuItemIngresso.setText("Ingresso");
         jMenuItemIngresso.addActionListener(new java.awt.event.ActionListener() {
@@ -144,6 +153,11 @@ public class JFramePrincipal extends javax.swing.JFrame {
         jPanelConteudo.setVisible(true);
     }//GEN-LAST:event_jMenuItemCaixaActionPerformed
 
+    private void jMenuItemListarAssentosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemListarAssentosActionPerformed
+        JDialogAssentos dialog = new JDialogAssentos(this, true);
+        dialog.setVisible(true);
+    }//GEN-LAST:event_jMenuItemListarAssentosActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -187,6 +201,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItemFilme;
     private javax.swing.JMenuItem jMenuItemFuncionario;
     private javax.swing.JMenuItem jMenuItemIngresso;
+    private javax.swing.JMenuItem jMenuItemListarAssentos;
     private javax.swing.JMenuItem jMenuItemSala;
     private javax.swing.JMenuItem jMenuItemSessao;
     private javax.swing.JPanel jPanelConteudo;
