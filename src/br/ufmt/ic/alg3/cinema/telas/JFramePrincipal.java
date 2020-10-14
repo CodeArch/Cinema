@@ -154,7 +154,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItemCaixaActionPerformed
 
     private void jMenuItemListarAssentosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemListarAssentosActionPerformed
-        JDialogAssentos dialog = new JDialogAssentos(this, true);
+        JDialogAssentos dialog = new JDialogAssentos(this, false);
         dialog.setVisible(true);
     }//GEN-LAST:event_jMenuItemListarAssentosActionPerformed
 
