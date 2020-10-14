@@ -7,7 +7,7 @@ package br.ufmt.ic.alg3.cinema.telas;
 
 import br.ufmt.ic.alg3.cinema.entidades.Assento;
 import br.ufmt.ic.alg3.cinema.persistencia.AssentoDAO;
-import br.ufmt.ic.alg3.cinema.persistencia.arquivo.AssentoDAOImplArq;
+import br.ufmt.ic.alg3.cinema.utils.DAOFactory;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
@@ -17,7 +17,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class JDialogAssentos extends javax.swing.JDialog {
 
-    private AssentoDAO assentoDAO = new AssentoDAOImplArq();
+    private AssentoDAO assentoDAO = DAOFactory.createAssentoDAO();
     
     /**
      * Creates new form JDialogAssentos

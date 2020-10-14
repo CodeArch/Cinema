@@ -7,7 +7,7 @@ package br.ufmt.ic.alg3.cinema.telas;
 
 import br.ufmt.ic.alg3.cinema.entidades.Filme;
 import br.ufmt.ic.alg3.cinema.persistencia.FilmeDAO;
-import br.ufmt.ic.alg3.cinema.persistencia.arquivo.FilmeDAOImplArq;
+import br.ufmt.ic.alg3.cinema.utils.DAOFactory;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
@@ -17,7 +17,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class JPanelFilme extends javax.swing.JPanel {
     
-    private FilmeDAO dao = new FilmeDAOImplArq();
+    private FilmeDAO dao = DAOFactory.createFilmeDAO();
     
     /**
      * Creates new form FilmeJPanel

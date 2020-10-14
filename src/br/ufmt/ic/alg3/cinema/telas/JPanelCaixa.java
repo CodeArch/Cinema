@@ -9,8 +9,7 @@ import br.ufmt.ic.alg3.cinema.entidades.Caixa;
 import br.ufmt.ic.alg3.cinema.entidades.Funcionario;
 import br.ufmt.ic.alg3.cinema.persistencia.CaixaDAO;
 import br.ufmt.ic.alg3.cinema.persistencia.FuncionarioDAO;
-import br.ufmt.ic.alg3.cinema.persistencia.arquivo.CaixaDAOImplArq;
-import br.ufmt.ic.alg3.cinema.persistencia.arquivo.FuncionarioDAOImplArq;
+import br.ufmt.ic.alg3.cinema.utils.DAOFactory;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
@@ -20,8 +19,8 @@ import javax.swing.table.DefaultTableModel;
  */
 public class JPanelCaixa extends javax.swing.JPanel {
 
-    private CaixaDAO caixaDAO = new CaixaDAOImplArq();
-    private FuncionarioDAO funcionarioDAO = new FuncionarioDAOImplArq();
+    private CaixaDAO caixaDAO = DAOFactory.createCaixaDAO();
+    private FuncionarioDAO funcionarioDAO = DAOFactory.createFuncionarioDAO();
     
     /**
      * Creates new form JPanelCaixa

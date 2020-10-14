@@ -11,9 +11,7 @@ import br.ufmt.ic.alg3.cinema.entidades.Sessao;
 import br.ufmt.ic.alg3.cinema.persistencia.FilmeDAO;
 import br.ufmt.ic.alg3.cinema.persistencia.SalaDAO;
 import br.ufmt.ic.alg3.cinema.persistencia.SessaoDAO;
-import br.ufmt.ic.alg3.cinema.persistencia.arquivo.FilmeDAOImplArq;
-import br.ufmt.ic.alg3.cinema.persistencia.arquivo.SalaDAOImplArq;
-import br.ufmt.ic.alg3.cinema.persistencia.arquivo.SessaoDAOImplArq;
+import br.ufmt.ic.alg3.cinema.utils.DAOFactory;
 import java.time.Instant;
 import java.util.Date;
 import java.util.List;
@@ -25,9 +23,9 @@ import javax.swing.table.DefaultTableModel;
  */
 public class JPanelSessao extends javax.swing.JPanel {
 
-    private SessaoDAO sessaoDAO = new SessaoDAOImplArq();
-    private FilmeDAO filmeDAO = new FilmeDAOImplArq();
-    private SalaDAO salaDAO = new SalaDAOImplArq();
+    private SessaoDAO sessaoDAO = DAOFactory.createSessaoDAO();
+    private FilmeDAO filmeDAO = DAOFactory.createFilmeDAO();
+    private SalaDAO salaDAO = DAOFactory.createSalaDAO();
     
     /**
      * Creates new form JPanelSessao

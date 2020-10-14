@@ -9,9 +9,7 @@ import br.ufmt.ic.alg3.cinema.entidades.Ingresso;
 import br.ufmt.ic.alg3.cinema.persistencia.AssentoDAO;
 import br.ufmt.ic.alg3.cinema.persistencia.IngressoDAO;
 import br.ufmt.ic.alg3.cinema.persistencia.SalaDAO;
-import br.ufmt.ic.alg3.cinema.persistencia.arquivo.AssentoDAOImplArq;
-import br.ufmt.ic.alg3.cinema.persistencia.arquivo.IngressoDAOImplArq;
-import br.ufmt.ic.alg3.cinema.persistencia.arquivo.SalaDAOImplArq;
+import br.ufmt.ic.alg3.cinema.utils.DAOFactory;
 import java.math.BigDecimal;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
@@ -22,9 +20,9 @@ import javax.swing.table.DefaultTableModel;
  */
 public class JPanelIngresso extends javax.swing.JPanel {
 
-    private IngressoDAO ingressoDAO = new IngressoDAOImplArq();
-    private SalaDAO salaDAO = new SalaDAOImplArq();
-    private AssentoDAO assentoDAO = new AssentoDAOImplArq();
+    private IngressoDAO ingressoDAO = DAOFactory.createIngressoDAO();
+    private SalaDAO salaDAO = DAOFactory.createSalaDAO();
+    private AssentoDAO assentoDAO = DAOFactory.createAssentoDAO();
     
     /**
      * Creates new form JPanelIngresso

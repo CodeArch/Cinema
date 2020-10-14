@@ -7,11 +7,9 @@ package br.ufmt.ic.alg3.cinema.telas;
 
 import br.ufmt.ic.alg3.cinema.entidades.Assento;
 import br.ufmt.ic.alg3.cinema.entidades.Sala;
-import br.ufmt.ic.alg3.cinema.entidades.Sessao;
 import br.ufmt.ic.alg3.cinema.persistencia.AssentoDAO;
 import br.ufmt.ic.alg3.cinema.persistencia.SalaDAO;
-import br.ufmt.ic.alg3.cinema.persistencia.arquivo.AssentoDAOImplArq;
-import br.ufmt.ic.alg3.cinema.persistencia.arquivo.SalaDAOImplArq;
+import br.ufmt.ic.alg3.cinema.utils.DAOFactory;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
@@ -21,8 +19,8 @@ import javax.swing.table.DefaultTableModel;
  */
 public class JPanelSala extends javax.swing.JPanel {
 
-    private SalaDAO salaDAO = new SalaDAOImplArq();
-    private AssentoDAO assentoDAO = new AssentoDAOImplArq();
+    private SalaDAO salaDAO = DAOFactory.createSalaDAO();
+    private AssentoDAO assentoDAO = DAOFactory.createAssentoDAO();
     
     /**
      * Creates new form JPanelSala

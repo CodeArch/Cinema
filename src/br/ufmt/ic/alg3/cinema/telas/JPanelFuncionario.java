@@ -7,7 +7,7 @@ package br.ufmt.ic.alg3.cinema.telas;
 
 import br.ufmt.ic.alg3.cinema.entidades.Funcionario;
 import br.ufmt.ic.alg3.cinema.persistencia.FuncionarioDAO;
-import br.ufmt.ic.alg3.cinema.persistencia.arquivo.FuncionarioDAOImplArq;
+import br.ufmt.ic.alg3.cinema.utils.DAOFactory;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
@@ -17,7 +17,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class JPanelFuncionario extends javax.swing.JPanel {
 
-    private FuncionarioDAO funcionarioDAO = new FuncionarioDAOImplArq();
+    private FuncionarioDAO funcionarioDAO = DAOFactory.createFuncionarioDAO();
     
     /**
      * Creates new form JPanelFuncionario
