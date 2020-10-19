@@ -260,21 +260,26 @@ public class JPanelIngresso extends javax.swing.JPanel {
         int idAssento = Integer.parseInt(jTextFieldAssento.getText());
         Assento assento = assentoDAO.getById(idAssento, salaDAO.getById(idSala));
         
+        // Só é possível cadastrar um Ingresso caso seu Assento esteja vago
         if (assento.getIngresso() == null) {
             novoIngresso.setAssentoReservado(assento);
 
             if (ingressoDAO.getById(id) == null) {
                 ingressoDAO.inserir(novoIngresso);
+                
+                // Vinculando novo assento ao Ingresso
                 assento.setIngresso(novoIngresso);
                 assentoDAO.editar(assento);                
             } else {
-                // Anulando registro anterior de assento
+                // Desvinculando o Ingresso do Assento anterior
                 Ingresso ingresso = ingressoDAO.getById(id);
                 Assento assentoAnterior = ingresso.getAssentoReservado();
                 assentoAnterior.setIngresso(null);
                 assentoDAO.editar(assentoAnterior);
                 
                 ingressoDAO.editar(novoIngresso);
+                
+                // Vinculando novo assento ao Ingresso
                 assento.setIngresso(novoIngresso);
                 assentoDAO.editar(assento);     
             }
@@ -327,6 +332,7 @@ public class JPanelIngresso extends javax.swing.JPanel {
             int idAssento = (int) jTableIngresso.getValueAt(linha, 4);
             int idSala = (int) jTableIngresso.getValueAt(linha, 1);
             
+            // Desvinculando o Ingresso do Assento
             Assento assento = assentoDAO.getById(idAssento, salaDAO.getById(idSala));
             assento.setIngresso(null);
             assentoDAO.editar(assento);
