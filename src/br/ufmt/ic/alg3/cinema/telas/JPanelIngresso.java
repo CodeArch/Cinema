@@ -258,21 +258,33 @@ public class JPanelIngresso extends javax.swing.JPanel {
         }
         
         int idAssento = Integer.parseInt(jTextFieldAssento.getText());
-        novoIngresso.setAssentoReservado(assentoDAO.getById(idAssento));
+        Assento assento = assentoDAO.getById(idAssento, salaDAO.getById(idSala));
         
-        if (ingressoDAO.getById(id) == null) {
-            ingressoDAO.inserir(novoIngresso);
+        if (assento.getIngresso() == null) {
+            novoIngresso.setAssentoReservado(assento);
+
+            if (ingressoDAO.getById(id) == null) {
+                ingressoDAO.inserir(novoIngresso);
+                assento.setIngresso(novoIngresso);
+                assentoDAO.editar(assento);                
+            } else {
+                // Anulando registro anterior de assento
+                Ingresso ingresso = ingressoDAO.getById(id);
+                Assento assentoAnterior = ingresso.getAssentoReservado();
+                assentoAnterior.setIngresso(null);
+                assentoDAO.editar(assentoAnterior);
+                
+                ingressoDAO.editar(novoIngresso);
+                assento.setIngresso(novoIngresso);
+                assentoDAO.editar(assento);     
+            }
+
+
+            jButtonLimparActionPerformed(evt);
+            carregarTabela();
         } else {
-            ingressoDAO.editar(novoIngresso);
+            System.out.println("Erro: Assento já reservado");
         }
-        
-        Assento assentoComIngresso = assentoDAO.getById(idAssento);
-        assentoComIngresso.setIngresso(novoIngresso);
-        assentoDAO.editar(assentoComIngresso);
-        
-        jButtonLimparActionPerformed(evt);
-        carregarTabela();
-        
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 
     private void jButtonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarActionPerformed
@@ -313,8 +325,9 @@ public class JPanelIngresso extends javax.swing.JPanel {
         for (int linha : linhas) {
             int id = (int) jTableIngresso.getValueAt(linha, 0);
             int idAssento = (int) jTableIngresso.getValueAt(linha, 4);
+            int idSala = (int) jTableIngresso.getValueAt(linha, 1);
             
-            Assento assento = assentoDAO.getById(idAssento);
+            Assento assento = assentoDAO.getById(idAssento, salaDAO.getById(idSala));
             assento.setIngresso(null);
             assentoDAO.editar(assento);
             

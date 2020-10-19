@@ -109,11 +109,11 @@ public class AssentoDAOImplArq implements AssentoDAO {
     }
 
     @Override
-    public Assento getById(int id) {
+    public Assento getById(int id, Sala sala) {
         carregarArquivo();
         
         for (Assento assento : assentos) {
-            if (assento.getId() == id) {
+            if (assento.getId() == id && assento.getSala().getId() == sala.getId()) {
                 return assento;
             }
         }
