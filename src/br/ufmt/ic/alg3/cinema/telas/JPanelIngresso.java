@@ -5,6 +5,7 @@
  */
 package br.ufmt.ic.alg3.cinema.telas;
 
+import br.ufmt.ic.alg3.cinema.entidades.Assento;
 import br.ufmt.ic.alg3.cinema.entidades.Ingresso;
 import br.ufmt.ic.alg3.cinema.persistencia.AssentoDAO;
 import br.ufmt.ic.alg3.cinema.persistencia.IngressoDAO;
@@ -265,6 +266,10 @@ public class JPanelIngresso extends javax.swing.JPanel {
             ingressoDAO.editar(novoIngresso);
         }
         
+        Assento assentoComIngresso = assentoDAO.getById(idAssento);
+        assentoComIngresso.setIngresso(novoIngresso);
+        assentoDAO.editar(assentoComIngresso);
+        
         jButtonLimparActionPerformed(evt);
         carregarTabela();
         
@@ -307,6 +312,12 @@ public class JPanelIngresso extends javax.swing.JPanel {
         
         for (int linha : linhas) {
             int id = (int) jTableIngresso.getValueAt(linha, 0);
+            int idAssento = (int) jTableIngresso.getValueAt(linha, 4);
+            
+            Assento assento = assentoDAO.getById(idAssento);
+            assento.setIngresso(null);
+            assentoDAO.editar(assento);
+            
             ingressoDAO.remover(id);
         }
         

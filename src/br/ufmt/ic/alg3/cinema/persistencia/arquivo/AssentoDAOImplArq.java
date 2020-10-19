@@ -81,7 +81,8 @@ public class AssentoDAOImplArq implements AssentoDAO {
         carregarArquivo();
         
         for (Assento assento1 : assentos) {
-            if (assento1.getId() == assento.getId()) {
+            if (assento1.getId() == assento.getId() && 
+                    assento1.getSala().getId() == assento.getSala().getId()) {
                 int index = assentos.indexOf(assento1);
                 assentos.set(index, assento);
                 salvarArquivo();
