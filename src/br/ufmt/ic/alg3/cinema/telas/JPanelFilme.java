@@ -122,6 +122,7 @@ public class JPanelFilme extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        jTableFilmes.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(jTableFilmes);
 
         jButtonEditar.setText("Editar");

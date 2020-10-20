@@ -132,6 +132,7 @@ public class JPanelFuncionario extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        jTableFuncionario.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(jTableFuncionario);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -141,9 +142,7 @@ public class JPanelFuncionario extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 597, Short.MAX_VALUE)
-                        .addContainerGap())
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 597, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -170,7 +169,8 @@ public class JPanelFuncionario extends javax.swing.JPanel {
                                 .addComponent(jButtonEditar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jButtonExcluir)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

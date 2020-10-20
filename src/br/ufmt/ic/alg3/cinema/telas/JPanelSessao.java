@@ -110,6 +110,7 @@ public class JPanelSessao extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        jTableSessoes.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(jTableSessoes);
 
         jSpinnerDataHora.setModel(new javax.swing.SpinnerDateModel());

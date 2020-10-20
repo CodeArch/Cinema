@@ -90,6 +90,7 @@ public class JPanelSala extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        jTableSala.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(jTableSala);
 
         jButtonSalvar.setText("Salvar");

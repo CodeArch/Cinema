@@ -127,6 +127,7 @@ public class JPanelIngresso extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        jTableIngresso.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(jTableIngresso);
 
         jButtonSalvar.setText("Salvar");

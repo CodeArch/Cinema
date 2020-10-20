@@ -115,6 +115,7 @@ public class JPanelCaixa extends javax.swing.JPanel {
                 "ID", "ID do Funcionario", "Nome do Funcionario"
             }
         ));
+        jTableCaixa.getTableHeader().setReorderingAllowed(false);
         jScrollPane2.setViewportView(jTableCaixa);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
