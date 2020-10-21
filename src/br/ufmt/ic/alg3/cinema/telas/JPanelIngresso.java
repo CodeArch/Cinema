@@ -10,6 +10,7 @@ import br.ufmt.ic.alg3.cinema.entidades.Ingresso;
 import br.ufmt.ic.alg3.cinema.persistencia.AssentoDAO;
 import br.ufmt.ic.alg3.cinema.persistencia.IngressoDAO;
 import br.ufmt.ic.alg3.cinema.persistencia.SalaDAO;
+import br.ufmt.ic.alg3.cinema.persistencia.SessaoDAO;
 import br.ufmt.ic.alg3.cinema.utils.DAOFactory;
 import java.math.BigDecimal;
 import java.util.List;
@@ -24,6 +25,7 @@ public class JPanelIngresso extends javax.swing.JPanel {
     private IngressoDAO ingressoDAO = DAOFactory.createIngressoDAO();
     private SalaDAO salaDAO = DAOFactory.createSalaDAO();
     private AssentoDAO assentoDAO = DAOFactory.createAssentoDAO();
+    private SessaoDAO sessaoDAO = DAOFactory.createSessaoDAO();
     
     /**
      * Creates new form JPanelIngresso
@@ -49,8 +51,8 @@ public class JPanelIngresso extends javax.swing.JPanel {
             Object[] linha = new Object[5];
             linha[0] = ingresso.getId();
             
-            if (ingresso.getSala() != null) {
-                linha[1] = ingresso.getSala().getId();
+            if (ingresso.getSessao()!= null) {
+                linha[1] = ingresso.getSessao().getId();
             }
 
             linha[2] = ingresso.getValor();
@@ -80,7 +82,7 @@ public class JPanelIngresso extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jTextFieldId = new javax.swing.JTextField();
-        jTextFieldSala = new javax.swing.JTextField();
+        jTextFieldSessao = new javax.swing.JTextField();
         jTextFieldValor = new javax.swing.JTextField();
         jTextFieldAssento = new javax.swing.JTextField();
         jRadioButtonInteira = new javax.swing.JRadioButton();
@@ -94,7 +96,7 @@ public class JPanelIngresso extends javax.swing.JPanel {
 
         jLabel1.setText("ID:");
 
-        jLabel2.setText("Sala:");
+        jLabel2.setText("Sessão:");
 
         jLabel3.setText("Valor:");
 
@@ -116,7 +118,7 @@ public class JPanelIngresso extends javax.swing.JPanel {
 
             },
             new String [] {
-                "ID", "Sala", "Valor", "Tipo", "Assento"
+                "ID", "Sessão", "Valor", "Tipo", "Assento"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -177,7 +179,7 @@ public class JPanelIngresso extends javax.swing.JPanel {
                                     .addComponent(jLabel4))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextFieldSala, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextFieldSessao, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jTextFieldId, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jTextFieldValor, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jTextFieldAssento, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -206,7 +208,7 @@ public class JPanelIngresso extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextFieldSala, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldSessao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -234,7 +236,7 @@ public class JPanelIngresso extends javax.swing.JPanel {
 
     private void jButtonLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLimparActionPerformed
         jTextFieldId.setText("");
-        jTextFieldSala.setText("");
+        jTextFieldSessao.setText("");
         jTextFieldValor.setText("");
         jRadioButtonInteira.setSelected(true);
         jTextFieldAssento.setText("");
@@ -246,8 +248,8 @@ public class JPanelIngresso extends javax.swing.JPanel {
         int id = Integer.parseInt(jTextFieldId.getText());
         novoIngresso.setId(id);
 
-        int idSala = Integer.parseInt(jTextFieldSala.getText());
-        novoIngresso.setSala(salaDAO.getById(idSala));
+        int idSessao = Integer.parseInt(jTextFieldSessao.getText());
+        novoIngresso.setSessao(sessaoDAO.getById(idSessao));
         
         BigDecimal valor = new BigDecimal(jTextFieldValor.getText());
         novoIngresso.setValor(valor);
@@ -259,7 +261,7 @@ public class JPanelIngresso extends javax.swing.JPanel {
         }
         
         int idAssento = Integer.parseInt(jTextFieldAssento.getText());
-        Assento assento = assentoDAO.getById(idAssento, salaDAO.getById(idSala));
+        Assento assento = assentoDAO.getById(idAssento, sessaoDAO.getById(idSessao).getSala());
         
         // Só é possível cadastrar um Ingresso caso seu Assento esteja vago
         if (assento.getIngresso() == null) {
@@ -303,10 +305,10 @@ public class JPanelIngresso extends javax.swing.JPanel {
             
             jTextFieldId.setText(Integer.toString(ingresso.getId()));
             
-            if (ingresso.getSala() != null) {
-                jTextFieldSala.setText(Integer.toString(ingresso.getSala().getId()));
+            if (ingresso.getSessao() != null) {
+                jTextFieldSessao.setText(Integer.toString(ingresso.getSessao().getId()));
             } else {
-                jTextFieldSala.setText("");
+                jTextFieldSessao.setText("");
             }
             
             jTextFieldValor.setText(ingresso.getValor().toString());
@@ -331,10 +333,10 @@ public class JPanelIngresso extends javax.swing.JPanel {
         for (int linha : linhas) {
             int id = (int) jTableIngresso.getValueAt(linha, 0);
             int idAssento = (int) jTableIngresso.getValueAt(linha, 4);
-            int idSala = (int) jTableIngresso.getValueAt(linha, 1);
+            int idSessao = (int) jTableIngresso.getValueAt(linha, 1);
             
             // Desvinculando o Ingresso do Assento
-            Assento assento = assentoDAO.getById(idAssento, salaDAO.getById(idSala));
+            Assento assento = assentoDAO.getById(idAssento, sessaoDAO.getById(idSessao).getSala());
             assento.setIngresso(null);
             assentoDAO.editar(assento);
             
@@ -362,7 +364,7 @@ public class JPanelIngresso extends javax.swing.JPanel {
     private javax.swing.JTable jTableIngresso;
     private javax.swing.JTextField jTextFieldAssento;
     private javax.swing.JTextField jTextFieldId;
-    private javax.swing.JTextField jTextFieldSala;
+    private javax.swing.JTextField jTextFieldSessao;
     private javax.swing.JTextField jTextFieldValor;
     // End of variables declaration//GEN-END:variables
 }

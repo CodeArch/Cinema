@@ -15,7 +15,7 @@ import java.math.BigDecimal;
 public class Ingresso implements Serializable {
  
     private int id;
-    private Sala sala;
+    private Sessao sessao;
     private BigDecimal valor;
     private char tipo; // I para inteira e M para meia
     private Assento assentoReservado;
@@ -28,12 +28,12 @@ public class Ingresso implements Serializable {
         this.id = id;
     }
 
-    public Sala getSala() {
-        return sala;
+    public Sessao getSessao() {
+        return sessao;
     }
 
-    public void setSala(Sala sala) {
-        this.sala = sala;
+    public void setSessao(Sessao sessao) {
+        this.sessao = sessao;
     }
 
     public BigDecimal getValor() {
