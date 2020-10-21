@@ -33,10 +33,11 @@ public class JFramePrincipal extends javax.swing.JFrame {
         jMenuItemFilme = new javax.swing.JMenuItem();
         jMenuItemSessao = new javax.swing.JMenuItem();
         jMenuItemSala = new javax.swing.JMenuItem();
-        jMenuItemListarAssentos = new javax.swing.JMenuItem();
         jMenuItemIngresso = new javax.swing.JMenuItem();
         jMenuItemCaixa = new javax.swing.JMenuItem();
         jMenuItemFuncionario = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        jMenuItemListarAssentos = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(800, 600));
@@ -46,7 +47,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
         jPanelConteudo.setLayout(new javax.swing.BoxLayout(jPanelConteudo, javax.swing.BoxLayout.LINE_AXIS));
         getContentPane().add(jPanelConteudo);
 
-        jMenu1.setText("File");
+        jMenu1.setText("Arquivo");
 
         jMenuItemFilme.setText("Filme");
         jMenuItemFilme.addActionListener(new java.awt.event.ActionListener() {
@@ -71,14 +72,6 @@ public class JFramePrincipal extends javax.swing.JFrame {
             }
         });
         jMenu1.add(jMenuItemSala);
-
-        jMenuItemListarAssentos.setText("Listar Assentos");
-        jMenuItemListarAssentos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItemListarAssentosActionPerformed(evt);
-            }
-        });
-        jMenu1.add(jMenuItemListarAssentos);
 
         jMenuItemIngresso.setText("Ingresso");
         jMenuItemIngresso.addActionListener(new java.awt.event.ActionListener() {
@@ -105,6 +98,18 @@ public class JFramePrincipal extends javax.swing.JFrame {
         jMenu1.add(jMenuItemFuncionario);
 
         jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Exibir");
+
+        jMenuItemListarAssentos.setText("Listar Assentos");
+        jMenuItemListarAssentos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemListarAssentosActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItemListarAssentos);
+
+        jMenuBar1.add(jMenu2);
 
         setJMenuBar(jMenuBar1);
 
@@ -196,6 +201,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItemCaixa;
     private javax.swing.JMenuItem jMenuItemFilme;
