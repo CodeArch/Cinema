@@ -23,7 +23,6 @@ import javax.swing.table.DefaultTableModel;
 public class JPanelIngresso extends javax.swing.JPanel {
 
     private IngressoDAO ingressoDAO = DAOFactory.createIngressoDAO();
-    private SalaDAO salaDAO = DAOFactory.createSalaDAO();
     private AssentoDAO assentoDAO = DAOFactory.createAssentoDAO();
     private SessaoDAO sessaoDAO = DAOFactory.createSessaoDAO();
     
