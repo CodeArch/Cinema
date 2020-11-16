@@ -88,6 +88,9 @@ public class JPanelFuncionario extends javax.swing.JPanel {
 
         jLabel5.setText("Telefone:");
 
+        jTextFieldId.setEditable(false);
+        jTextFieldId.setEnabled(false);
+
         jButtonSalvar.setText("Salvar");
         jButtonSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -218,7 +221,12 @@ public class JPanelFuncionario extends javax.swing.JPanel {
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
         Funcionario novoFuncionario = new Funcionario();
         
-        int id = Integer.parseInt(jTextFieldId.getText());
+        int id = 0;
+        try {
+            id = Integer.parseInt(jTextFieldId.getText());
+        } catch (NumberFormatException ex) {
+            id = 0;
+        }
         
         novoFuncionario.setId(id);
         novoFuncionario.setNome(jTextFieldNome.getText());
