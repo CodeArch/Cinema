@@ -45,14 +45,13 @@ public class FuncionarioDAOImplPostgreSQL implements FuncionarioDAO {
     public void inserir(Funcionario funcionario) {
         conectar();
 
-        String sql = "INSERT INTO funcionario (id, nome, cpf, endereco, telefone) VALUES (?, ?, ?, ?, ?);";
+        String sql = "INSERT INTO funcionario (nome, cpf, endereco, telefone) VALUES (?, ?, ?, ?);";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(1, funcionario.getId());
-            ps.setString(2, funcionario.getNome());
-            ps.setString(3, funcionario.getCpf());
-            ps.setString(4, funcionario.getEndereco());
-            ps.setString(5, funcionario.getTelefone());
+            ps.setString(1, funcionario.getNome());
+            ps.setString(2, funcionario.getCpf());
+            ps.setString(3, funcionario.getEndereco());
+            ps.setString(4, funcionario.getTelefone());
             ps.execute();
         } catch (SQLException ex) {
             Logger.getLogger(FuncionarioDAOImplPostgreSQL.class.getName()).log(Level.SEVERE, null, ex);
