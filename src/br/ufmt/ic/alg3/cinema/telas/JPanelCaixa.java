@@ -79,6 +79,9 @@ public class JPanelCaixa extends javax.swing.JPanel {
 
         jLabel2.setText("Funcionario:");
 
+        jTextFieldId.setEditable(false);
+        jTextFieldId.setEnabled(false);
+
         jButtonSalvar.setText("Salvar");
         jButtonSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -181,8 +184,19 @@ public class JPanelCaixa extends javax.swing.JPanel {
         
         List<Funcionario> funcionarios = funcionarioDAO.listar();
         
-        int id = Integer.parseInt(jTextFieldId.getText());
-        int idFuncionario = Integer.parseInt(jTextFieldFuncionario.getText());
+        int id = 0;
+        try {
+            id = Integer.parseInt(jTextFieldId.getText());
+        } catch (NumberFormatException ex) {
+            id = 0;
+        }
+        
+        int idFuncionario = 0;
+        try {
+            idFuncionario = Integer.parseInt(jTextFieldFuncionario.getText());
+        } catch (NumberFormatException ex) {
+            id = 0;
+        }
        
         novoCaixa.setId(id);
         
