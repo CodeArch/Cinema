@@ -46,7 +46,7 @@ public class CaixaDAOImplPostgreSQL implements CaixaDAO{
     public void inserir(Caixa caixa) {
         conectar();
         
-        String sql = "INSERT INTO caixa (funcionario) VALUES ?;";
+        String sql = "INSERT INTO caixa (funcionario) VALUES (?);";
         
         PreparedStatement ps;
         try {
@@ -108,15 +108,15 @@ public class CaixaDAOImplPostgreSQL implements CaixaDAO{
         String sql = 
                 "SELECT \n" +
                 "	caixa.id, \n" +
-                "	caixa.funcionario, \n" +
+                "	funcionario.id AS funcionario, \n" +
                 "	funcionario.nome,\n" +
                 "	funcionario.cpf,\n" +
                 "	funcionario.endereco,\n" +
                 "	funcionario.telefone\n" +
                 "FROM caixa\n" +
-                "LEFT JOIN funcionario ON caixa.funcionario=funcionario.id;"
-                + "WHERE caixa.id = ?";
-        
+                "LEFT JOIN funcionario ON caixa.funcionario=funcionario.id\n" +
+                "WHERE caixa.id = ?;";
+       
         Caixa c = null;
         Funcionario f = null;
         try {
@@ -127,14 +127,14 @@ public class CaixaDAOImplPostgreSQL implements CaixaDAO{
             
             if (rs.next()) {
                 c = new Caixa();
-                c.setId(rs.getInt("caixa.id"));
-                if (rs.getInt("caixa.funcionario") != 0) {
+                c.setId(rs.getInt("id"));
+                if (rs.getInt("funcionario") != 0) {
                     f = new Funcionario();
-                    f.setId(rs.getInt("caixa.funcionario"));
-                    f.setNome(rs.getString("funcionario.nome"));
-                    f.setCpf(rs.getString("funcionario.cpf"));
-                    f.setEndereco(rs.getString("funcionario.endereco"));
-                    f.setTelefone(rs.getString("funcionario.telefone"));
+                    f.setId(rs.getInt("funcionario"));
+                    f.setNome(rs.getString("nome"));
+                    f.setCpf(rs.getString("cpf"));
+                    f.setEndereco(rs.getString("endereco"));
+                    f.setTelefone(rs.getString("telefone"));
                 }
                 c.setFuncionario(f);
                 
@@ -157,7 +157,7 @@ public class CaixaDAOImplPostgreSQL implements CaixaDAO{
         String sql = 
                 "SELECT \n" +
                 "	caixa.id, \n" +
-                "	funcionario.id, \n" +
+                "	funcionario.id AS funcionario, \n" +
                 "	funcionario.nome,\n" +
                 "	funcionario.cpf,\n" +
                 "	funcionario.endereco,\n" +
@@ -172,15 +172,15 @@ public class CaixaDAOImplPostgreSQL implements CaixaDAO{
             
             while (rs.next()) {
                 Caixa c = new Caixa();
-                c.setId(rs.getInt("caixa.id"));
+                c.setId(rs.getInt("id"));
                 
-                if (rs.getInt("caixa.funcionario") != 0) {
+                if (rs.getInt("funcionario") != 0) {
                     Funcionario f = new Funcionario();
-                    f.setId(rs.getInt("caixa.funcionario"));
-                    f.setNome(rs.getString("funcionario.nome"));
-                    f.setCpf(rs.getString("funcionario.cpf"));
-                    f.setEndereco(rs.getString("funcionario.endereco"));
-                    f.setTelefone(rs.getString("funcionario.telefone"));
+                    f.setId(rs.getInt("funcionario"));
+                    f.setNome(rs.getString("nome"));
+                    f.setCpf(rs.getString("cpf"));
+                    f.setEndereco(rs.getString("endereco"));
+                    f.setTelefone(rs.getString("telefone"));
                     
                     c.setFuncionario(f);
                 }
