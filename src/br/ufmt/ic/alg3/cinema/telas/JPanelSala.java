@@ -11,6 +11,7 @@ import br.ufmt.ic.alg3.cinema.persistencia.AssentoDAO;
 import br.ufmt.ic.alg3.cinema.persistencia.SalaDAO;
 import br.ufmt.ic.alg3.cinema.utils.DAOFactory;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -21,7 +22,7 @@ public class JPanelSala extends javax.swing.JPanel {
 
     private SalaDAO salaDAO = DAOFactory.createSalaDAO();
     private AssentoDAO assentoDAO = DAOFactory.createAssentoDAO();
-    
+
     /**
      * Creates new form JPanelSala
      */
@@ -29,23 +30,22 @@ public class JPanelSala extends javax.swing.JPanel {
         initComponents();
         carregarTabela();
     }
-    
+
     private void carregarTabela() {
         List<Sala> salas = salaDAO.listar();
-        
+
         DefaultTableModel tableModel = (DefaultTableModel) jTableSala.getModel();
-        
+
         // Limpar a tabela
         int linhas = tableModel.getRowCount();
         for (int i = 0; i < linhas; i++) {
             tableModel.removeRow(0);
         }
-        
+
         for (Sala sala : salas) {
             Object[] linha = new Object[2];
             linha[0] = sala.getId();
-            linha[1] = sala.getAssentos() == null ? null: sala.getAssentos().length;
-            
+
             tableModel.addRow(linha);
         }
     }
@@ -79,11 +79,11 @@ public class JPanelSala extends javax.swing.JPanel {
 
             },
             new String [] {
-                "ID", "Assentos"
+                "ID"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false
+                false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -181,67 +181,87 @@ public class JPanelSala extends javax.swing.JPanel {
     }//GEN-LAST:event_jButtonLimparActionPerformed
 
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
-        Sala sala = new Sala();
-        
-        int id = Integer.parseInt(jTextFieldId.getText());
-        int quantAssentos = (int) jSpinnerAssentos.getValue();
-        
-        sala.setId(id);
-        
-        int cont = 0;
-        Assento[] assentos = new Assento[quantAssentos];
-        for (Assento assento : assentos) {
-            assento = new Assento();
-            assento.setId(cont);
-            assento.setSala(sala);
-            
-            assentoDAO.inserir(assento);
-            
-            cont++;
+        String mensagem
+                = "Não será possível reduzir o número de assentos caso decida "
+                + "prosseguir.\nPara isso, será necessário excluir esta sala "
+                + "e criar outra.\nTem certeza que deseja continuar? Você "
+                + "só poderá aumentar o número de assentos mais tarde.\n";
+
+        String opcoes[] = {"Sim", "Não"};
+        int resposta = JOptionPane.showOptionDialog(
+                this, mensagem, "Aviso!",
+                JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE,
+                null, opcoes, opcoes[1]
+        );
+
+        if (resposta == JOptionPane.YES_OPTION) {
+
+            Sala sala = new Sala();
+
+            int id = Integer.parseInt(jTextFieldId.getText());
+            int quantAssentos = (int) jSpinnerAssentos.getValue();
+
+            sala.setId(id);
+
+            int cont = 0;
+            Assento[] assentos = new Assento[quantAssentos];
+            for (Assento assento : assentos) {
+                assento = new Assento();
+                assento.setId(cont);
+                assento.setSala(sala);
+
+                assentoDAO.inserir(assento);
+
+                cont++;
+            }
+
+            if (salaDAO.getById(id) == null) {
+                salaDAO.inserir(sala);
+            } else {
+                salaDAO.editar(sala);
+            }
+
+            jButtonLimparActionPerformed(evt);
+            carregarTabela();
         }
-        
-        sala.setAssentos(assentos);
-        
-        if (salaDAO.getById(id) == null) {
-            salaDAO.inserir(sala);
-        } else {
-            salaDAO.editar(sala);
-        }
-        
-        jButtonLimparActionPerformed(evt);
-        carregarTabela();
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 
     private void jButtonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarActionPerformed
         int linha = jTableSala.getSelectedRow();
-        
+
         if (linha != -1) {
             int id = (int) jTableSala.getValueAt(linha, 0);
 
             Sala sala = salaDAO.getById(id);
 
             jTextFieldId.setText(Integer.toString(sala.getId()));
-            jSpinnerAssentos.setValue(sala.getAssentos().length);
-            
         }
-        
+
     }//GEN-LAST:event_jButtonEditarActionPerformed
 
     private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
         int[] linhas = jTableSala.getSelectedRows();
-        
+
         for (int linha : linhas) {
             int id = (int) jTableSala.getValueAt(linha, 0);
-            
+
             Sala salaAExcluir = salaDAO.getById(id);
-            
-            for (int i = 0; i < salaAExcluir.getAssentos().length; i++) {
+
+            int cont = 0;
+            List<Assento> assentos = assentoDAO.listar();
+            for (Assento assento : assentos) {
+                if (assento.getSala().getId() == salaAExcluir.getId()) {
+                    cont++;
+                }
+            }
+
+            for (int i = 0; i < cont; i++) {
                 assentoDAO.remover(i, salaAExcluir);
             }
-            
+
             salaDAO.remover(id);
         }
-        
+
         carregarTabela();
     }//GEN-LAST:event_jButtonExcluirActionPerformed
 
