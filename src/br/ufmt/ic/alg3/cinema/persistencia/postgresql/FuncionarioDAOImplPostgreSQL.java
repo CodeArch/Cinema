@@ -120,7 +120,6 @@ public class FuncionarioDAOImplPostgreSQL implements FuncionarioDAO {
                 f.setCpf(rs.getString("cpf"));
                 f.setEndereco(rs.getString("endereco"));
                 f.setTelefone(rs.getString("telefone"));
-                return f;
             }
             rs.close();
         } catch (SQLException ex) {
