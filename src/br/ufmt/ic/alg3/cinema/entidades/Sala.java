@@ -14,7 +14,6 @@ import java.io.Serializable;
 public class Sala implements Serializable {
     
     private int id;
-    private Assento assentos[];
 
     public int getId() {
         return id;
@@ -24,14 +23,4 @@ public class Sala implements Serializable {
         this.id = id;
     }
 
-    public Assento[] getAssentos() {
-        return assentos;
-    }
-
-    public void setAssentos(Assento[] assentos) {
-        this.assentos = assentos;
-    }
-    
-    
-    
 }
