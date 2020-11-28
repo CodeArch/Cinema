@@ -45,6 +45,7 @@ public class JPanelSala extends javax.swing.JPanel {
         for (Sala sala : salas) {
             Object[] linha = new Object[2];
             linha[0] = sala.getId();
+            linha[1] = sala.getNome();
 
             tableModel.addRow(linha);
         }
@@ -69,6 +70,8 @@ public class JPanelSala extends javax.swing.JPanel {
         jSpinnerAssentos = new javax.swing.JSpinner();
         jButtonEditar = new javax.swing.JButton();
         jButtonExcluir = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jTextFieldNome = new javax.swing.JTextField();
 
         jLabel1.setText("ID:");
 
@@ -79,11 +82,11 @@ public class JPanelSala extends javax.swing.JPanel {
 
             },
             new String [] {
-                "ID"
+                "ID", "Nome"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false
+                false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -99,6 +102,9 @@ public class JPanelSala extends javax.swing.JPanel {
                 jButtonSalvarActionPerformed(evt);
             }
         });
+
+        jTextFieldId.setEditable(false);
+        jTextFieldId.setEnabled(false);
 
         jButtonLimpar.setText("Limpar");
         jButtonLimpar.addActionListener(new java.awt.event.ActionListener() {
@@ -123,6 +129,8 @@ public class JPanelSala extends javax.swing.JPanel {
             }
         });
 
+        jLabel2.setText("Nome:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -132,15 +140,7 @@ public class JPanelSala extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel1))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextFieldId, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jSpinnerAssentos, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jButtonSalvar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -148,7 +148,17 @@ public class JPanelSala extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButtonEditar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButtonExcluir)))
+                                .addComponent(jButtonExcluir))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jLabel2))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTextFieldId, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jSpinnerAssentos, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextFieldNome))))
                         .addGap(0, 102, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -161,6 +171,10 @@ public class JPanelSala extends javax.swing.JPanel {
                     .addComponent(jTextFieldId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jTextFieldNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jSpinnerAssentos, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -170,13 +184,14 @@ public class JPanelSala extends javax.swing.JPanel {
                     .addComponent(jButtonEditar)
                     .addComponent(jButtonExcluir))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLimparActionPerformed
         jTextFieldId.setText("");
+        jTextFieldNome.setText("");
         jSpinnerAssentos.setValue(30);
     }//GEN-LAST:event_jButtonLimparActionPerformed
 
@@ -198,11 +213,20 @@ public class JPanelSala extends javax.swing.JPanel {
 
             Sala sala = new Sala();
 
-            int id = Integer.parseInt(jTextFieldId.getText());
+            int id = 0;
+            try {
+                id = Integer.parseInt(jTextFieldId.getText());
+            } catch (NumberFormatException ex) {
+                id = 0;
+            } 
+            
+            String nome = jTextFieldNome.getText();
+            
             int quantAssentos = (int) jSpinnerAssentos.getValue();
 
             sala.setId(id);
-
+            sala.setNome(nome);
+            
             int cont = 0;
             Assento[] assentos = new Assento[quantAssentos];
             for (Assento assento : assentos) {
@@ -235,6 +259,7 @@ public class JPanelSala extends javax.swing.JPanel {
             Sala sala = salaDAO.getById(id);
 
             jTextFieldId.setText(Integer.toString(sala.getId()));
+            jTextFieldNome.setText(sala.getNome());
         }
 
     }//GEN-LAST:event_jButtonEditarActionPerformed
@@ -272,10 +297,12 @@ public class JPanelSala extends javax.swing.JPanel {
     private javax.swing.JButton jButtonLimpar;
     private javax.swing.JButton jButtonSalvar;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSpinner jSpinnerAssentos;
     private javax.swing.JTable jTableSala;
     private javax.swing.JTextField jTextFieldId;
+    private javax.swing.JTextField jTextFieldNome;
     // End of variables declaration//GEN-END:variables
 }
