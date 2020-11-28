@@ -85,6 +85,9 @@ public class JPanelFilme extends javax.swing.JPanel {
 
         jLabel4.setText("Selecione o tipo:");
 
+        jTextFieldId.setEditable(false);
+        jTextFieldId.setEnabled(false);
+
         buttonGroupTipo.add(jRadioButton2D);
         jRadioButton2D.setSelected(true);
         jRadioButton2D.setText("2D");
@@ -220,7 +223,12 @@ public class JPanelFilme extends javax.swing.JPanel {
         
         Filme novoFilme = new Filme();
         
-        int id = Integer.parseInt(jTextFieldId.getText());
+        int id = 0;
+        try {
+            id = Integer.parseInt(jTextFieldId.getText());
+        } catch (NumberFormatException ex) {
+            id = 0;
+        }
         
         novoFilme.setId(id);
         novoFilme.setNome(jTextFieldNome.getText());
