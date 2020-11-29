@@ -5,6 +5,9 @@
  */
 package br.ufmt.ic.alg3.cinema.telas;
 
+import java.awt.Component;
+import java.awt.Cursor;
+
 /**
  *
  * @author henrique
@@ -117,50 +120,85 @@ public class JFramePrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItemFilmeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemFilmeActionPerformed
-        jPanelConteudo.removeAll();
-        jPanelConteudo.add(new JPanelFilme());
-        jPanelConteudo.setVisible(false);
-        jPanelConteudo.setVisible(true);
+        try {
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            jPanelConteudo.removeAll();
+            jPanelConteudo.add(new JPanelFilme());
+            jPanelConteudo.setVisible(false);
+            jPanelConteudo.setVisible(true);
+        } finally {
+            this.setCursor(Cursor.getDefaultCursor());
+        }
     }//GEN-LAST:event_jMenuItemFilmeActionPerformed
 
     private void jMenuItemSessaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemSessaoActionPerformed
-        jPanelConteudo.removeAll();
-        jPanelConteudo.add(new JPanelSessao());
-        jPanelConteudo.setVisible(false);
-        jPanelConteudo.setVisible(true);
+        try {
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            jPanelConteudo.removeAll();
+            jPanelConteudo.add(new JPanelSessao());
+            jPanelConteudo.setVisible(false);
+            jPanelConteudo.setVisible(true);
+        } finally {
+            this.setCursor(Cursor.getDefaultCursor());
+        }
     }//GEN-LAST:event_jMenuItemSessaoActionPerformed
 
     private void jMenuItemSalaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemSalaActionPerformed
-        jPanelConteudo.removeAll();
-        jPanelConteudo.add(new JPanelSala());
-        jPanelConteudo.setVisible(false);
-        jPanelConteudo.setVisible(true);
+        try {
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            jPanelConteudo.removeAll();
+            jPanelConteudo.add(new JPanelSala());
+            jPanelConteudo.setVisible(false);
+            jPanelConteudo.setVisible(true);
+        } finally {
+            this.setCursor(Cursor.getDefaultCursor());
+        }
     }//GEN-LAST:event_jMenuItemSalaActionPerformed
 
     private void jMenuItemIngressoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemIngressoActionPerformed
-        jPanelConteudo.removeAll();
-        jPanelConteudo.add(new JPanelIngresso());
-        jPanelConteudo.setVisible(false);
-        jPanelConteudo.setVisible(true);
+        try {
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            jPanelConteudo.removeAll();
+            jPanelConteudo.add(new JPanelIngresso());
+            jPanelConteudo.setVisible(false);
+            jPanelConteudo.setVisible(true);
+        } finally {
+            this.setCursor(Cursor.getDefaultCursor());
+        }
     }//GEN-LAST:event_jMenuItemIngressoActionPerformed
 
     private void jMenuItemFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemFuncionarioActionPerformed
-        jPanelConteudo.removeAll();
-        jPanelConteudo.add(new JPanelFuncionario());
-        jPanelConteudo.setVisible(false);
-        jPanelConteudo.setVisible(true);
+        try {
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            jPanelConteudo.removeAll();
+            jPanelConteudo.add(new JPanelFuncionario());
+            jPanelConteudo.setVisible(false);
+            jPanelConteudo.setVisible(true);
+        } finally {
+            this.setCursor(Cursor.getDefaultCursor());
+        }
     }//GEN-LAST:event_jMenuItemFuncionarioActionPerformed
 
     private void jMenuItemCaixaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemCaixaActionPerformed
-        jPanelConteudo.removeAll();
-        jPanelConteudo.add(new JPanelCaixa());
-        jPanelConteudo.setVisible(false);
-        jPanelConteudo.setVisible(true);
+        try {
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            jPanelConteudo.removeAll();
+            jPanelConteudo.add(new JPanelCaixa());
+            jPanelConteudo.setVisible(false);
+            jPanelConteudo.setVisible(true);
+        } finally {
+            this.setCursor(Cursor.getDefaultCursor());
+        }
     }//GEN-LAST:event_jMenuItemCaixaActionPerformed
 
     private void jMenuItemListarAssentosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemListarAssentosActionPerformed
-        JDialogAssentos dialog = new JDialogAssentos(this, false);
-        dialog.setVisible(true);
+        try {
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            JDialogAssentos dialog = new JDialogAssentos(this, false);
+            dialog.setVisible(true);
+        } finally {
+            this.setCursor(Cursor.getDefaultCursor());
+        }
     }//GEN-LAST:event_jMenuItemListarAssentosActionPerformed
 
     /**
