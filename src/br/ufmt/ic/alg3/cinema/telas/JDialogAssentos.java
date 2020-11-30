@@ -43,10 +43,6 @@ public class JDialogAssentos extends javax.swing.JDialog {
             linha[0] = assento.getId();
             linha[1] = assento.getSala().getId();
             
-            if (assento.getIngresso() != null) {
-                linha[2] = assento.getIngresso().getId();
-            }
-            
             tableModel.addRow(linha);
         }
     }
