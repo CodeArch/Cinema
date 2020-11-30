@@ -15,7 +15,6 @@ public class Assento implements Serializable {
     
     private int id;
     private Sala sala;
-    private Ingresso ingresso;
 
     public int getId() {
         return id;
@@ -33,14 +32,4 @@ public class Assento implements Serializable {
         this.sala = sala;
     }
 
-    public Ingresso getIngresso() {
-        return ingresso;
-    }
-
-    public void setIngresso(Ingresso ingresso) {
-        this.ingresso = ingresso;
-    }
-    
-    
-    
 }
