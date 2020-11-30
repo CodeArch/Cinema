@@ -193,61 +193,62 @@ public class JPanelSala extends javax.swing.JPanel {
         jTextFieldId.setText("");
         jTextFieldNome.setText("");
         jSpinnerAssentos.setValue(30);
+        jSpinnerAssentos.setEnabled(true);
     }//GEN-LAST:event_jButtonLimparActionPerformed
 
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
-        String mensagem
-                = "Não será possível reduzir o número de assentos caso decida "
-                + "prosseguir.\nPara isso, será necessário excluir esta sala "
-                + "e criar outra.\nTem certeza que deseja continuar? Você "
-                + "só poderá aumentar o número de assentos mais tarde.\n";
 
-        String opcoes[] = {"Sim", "Não"};
-        int resposta = JOptionPane.showOptionDialog(
-                this, mensagem, "Aviso!",
-                JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE,
-                null, opcoes, opcoes[1]
-        );
+        Sala sala = new Sala();
 
-        if (resposta == JOptionPane.YES_OPTION) {
-
-            Sala sala = new Sala();
-
-            int id = 0;
-            try {
-                id = Integer.parseInt(jTextFieldId.getText());
-            } catch (NumberFormatException ex) {
-                id = 0;
-            } 
-            
-            String nome = jTextFieldNome.getText();
-            
-            int quantAssentos = (int) jSpinnerAssentos.getValue();
-
-            sala.setId(id);
-            sala.setNome(nome);
-            
-            int cont = 0;
-            Assento[] assentos = new Assento[quantAssentos];
-            for (Assento assento : assentos) {
-                assento = new Assento();
-                assento.setId(cont);
-                assento.setSala(sala);
-
-                assentoDAO.inserir(assento);
-
-                cont++;
-            }
-
-            if (salaDAO.getById(id) == null) {
-                salaDAO.inserir(sala);
-            } else {
-                salaDAO.editar(sala);
-            }
-
-            jButtonLimparActionPerformed(evt);
-            carregarTabela();
+        int id = 0;
+        try {
+            id = Integer.parseInt(jTextFieldId.getText());
+        } catch (NumberFormatException ex) {
+            id = 0;
         }
+
+        String nome = jTextFieldNome.getText();
+
+        int quantAssentos = (int) jSpinnerAssentos.getValue();
+
+        sala.setId(id);
+        sala.setNome(nome);
+
+        if (salaDAO.getById(id) == null) {
+            String mensagem
+                    = "Não será possível alterar o número de assentos desta"
+                    + " sala.\nTem certeza que deseja continuar?";
+
+            String opcoes[] = {"Sim", "Não"};
+            int resposta = JOptionPane.showOptionDialog(
+                    this, mensagem, "Aviso!",
+                    JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE,
+                    null, opcoes, opcoes[1]
+            );
+
+            if (resposta == JOptionPane.YES_OPTION) {
+                int cont = 0;
+                Assento[] assentos = new Assento[quantAssentos];
+                for (Assento assento : assentos) {
+                    assento = new Assento();
+                    assento.setId(cont);
+                    assento.setSala(sala);
+
+                    assentoDAO.inserir(assento);
+
+                    cont++;
+                }
+                
+                salaDAO.inserir(sala);
+
+            }
+        } else {
+            salaDAO.editar(sala);
+        }
+
+        jButtonLimparActionPerformed(evt);
+        carregarTabela();
+
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 
     private void jButtonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarActionPerformed
@@ -260,6 +261,7 @@ public class JPanelSala extends javax.swing.JPanel {
 
             jTextFieldId.setText(Integer.toString(sala.getId()));
             jTextFieldNome.setText(sala.getNome());
+            jSpinnerAssentos.setEnabled(false);
         }
 
     }//GEN-LAST:event_jButtonEditarActionPerformed
