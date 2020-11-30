@@ -42,10 +42,11 @@ public class SalaDAOImplPostgreSQL implements SalaDAO{
     }
     
     @Override
-    public void inserir(Sala sala) {
+    public int inserir(Sala sala) {
         conectar();
         
         String sql = "INSERT INTO sala (nome) VALUES ('" + sala.getNome() + "');";
+        String lastvalQuery = "SELECT lastval();";
         
         try {
             con.createStatement().execute(sql);
@@ -53,7 +54,20 @@ public class SalaDAOImplPostgreSQL implements SalaDAO{
             Logger.getLogger(SalaDAOImplPostgreSQL.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+        int lastval = -1;
+        try {
+            ResultSet rs = con.createStatement().executeQuery(lastvalQuery);
+            
+            if (rs.next()) {
+                lastval = rs.getInt("lastval");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(SalaDAOImplPostgreSQL.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         desconectar();
+        
+        return lastval;
     }
 
     @Override

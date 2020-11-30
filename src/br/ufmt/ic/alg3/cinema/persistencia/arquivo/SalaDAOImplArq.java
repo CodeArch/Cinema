@@ -53,7 +53,7 @@ public class SalaDAOImplArq implements SalaDAO {
     }
     
     @Override
-    public void inserir(Sala sala) {
+    public int inserir(Sala sala) {
         carregarArquivo();
         
         boolean existe = false;
@@ -71,6 +71,8 @@ public class SalaDAOImplArq implements SalaDAO {
         } else {
             System.out.println("Sala já cadastrada!");
         }
+        
+        return sala.getId();
             
     }
 

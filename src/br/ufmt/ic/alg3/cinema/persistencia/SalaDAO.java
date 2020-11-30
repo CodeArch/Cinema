@@ -14,7 +14,17 @@ import java.util.List;
  */
 public interface SalaDAO {
     
-    public void inserir(Sala sala);
+    /**
+     * Insere uma nova Sala
+     * @param sala
+     * @return 
+     * O ID gerado para o novo registro. <br>
+     * Em arquivo, o valor é o mesmo que o ID fornecido. <br>
+     * Em banco de dados, o valor é equivalente ao retorno da função lastval(). <br>
+     * -1 caso não tenha sido possível retornar o valor correto.
+     * 
+     */
+    public int inserir(Sala sala);
     
     public void editar (Sala sala);
     
