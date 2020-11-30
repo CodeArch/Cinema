@@ -15,6 +15,7 @@ public class Assento implements Serializable {
     
     private int id;
     private Sala sala;
+    private int numero;
 
     public int getId() {
         return id;
@@ -32,4 +33,12 @@ public class Assento implements Serializable {
         this.sala = sala;
     }
 
+    public int getNumero() {
+        return numero;
+    }
+
+    public void setNumero(int numero) {
+        this.numero = numero;
+    }
+    
 }
