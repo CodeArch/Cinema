@@ -10,6 +10,7 @@ import br.ufmt.ic.alg3.cinema.entidades.Sala;
 import br.ufmt.ic.alg3.cinema.persistencia.AssentoDAO;
 import br.ufmt.ic.alg3.cinema.persistencia.SalaDAO;
 import br.ufmt.ic.alg3.cinema.utils.DAOFactory;
+import java.awt.Cursor;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -227,19 +228,27 @@ public class JPanelSala extends javax.swing.JPanel {
             );
 
             if (resposta == JOptionPane.YES_OPTION) {
-                int cont = 0;
-                Assento[] assentos = new Assento[quantAssentos];
-                for (Assento assento : assentos) {
-                    assento = new Assento();
-                    assento.setId(cont);
-                    assento.setSala(sala);
+                try {
+                    this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+                    int lastval = salaDAO.inserir(sala);
 
-                    assentoDAO.inserir(assento);
+                    sala.setId(lastval);
 
-                    cont++;
+                    int cont = 0;
+                    Assento[] assentos = new Assento[quantAssentos];
+                    for (Assento assento : assentos) {
+                        assento = new Assento();
+                        assento.setNumero(cont);
+                        assento.setSala(sala);
+
+                        assentoDAO.inserir(assento);
+
+                        cont++;
+                    }
+                } finally {
+                    this.setCursor(Cursor.getDefaultCursor());
                 }
                 
-                salaDAO.inserir(sala);
 
             }
         } else {
@@ -269,24 +278,22 @@ public class JPanelSala extends javax.swing.JPanel {
     private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
         int[] linhas = jTableSala.getSelectedRows();
 
-        for (int linha : linhas) {
-            int id = (int) jTableSala.getValueAt(linha, 0);
+        try {
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            for (int linha : linhas) {
+                int id = (int) jTableSala.getValueAt(linha, 0);
 
-            Sala salaAExcluir = salaDAO.getById(id);
+                Sala salaAExcluir = salaDAO.getById(id);
 
-            int cont = 0;
-            List<Assento> assentos = assentoDAO.listar();
-            for (Assento assento : assentos) {
-                if (assento.getSala().getId() == salaAExcluir.getId()) {
-                    cont++;
+                List<Assento> assentosDaSala = assentoDAO.getBySala(salaAExcluir);
+                for (Assento assento : assentosDaSala) {
+                    assentoDAO.remover(assento.getId());
                 }
-            }
 
-            for (int i = 0; i < cont; i++) {
-                assentoDAO.remover(i, salaAExcluir);
+                salaDAO.remover(id);
             }
-
-            salaDAO.remover(id);
+        } finally {
+            this.setCursor(Cursor.getDefaultCursor());
         }
 
         carregarTabela();
