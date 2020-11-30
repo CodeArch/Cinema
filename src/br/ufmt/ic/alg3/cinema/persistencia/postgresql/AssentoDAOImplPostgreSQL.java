@@ -52,7 +52,7 @@ public class AssentoDAOImplPostgreSQL implements AssentoDAO {
             PreparedStatement ps = con.prepareStatement(sql);
             
             ps.setInt(1, assento.getSala().getId());
-            ps.setInt(1, assento.getNumero());
+            ps.setInt(2, assento.getNumero());
             
             ps.execute();
         } catch (SQLException ex) {
