@@ -6,6 +6,7 @@
 package br.ufmt.ic.alg3.cinema.persistencia.arquivo;
 
 import br.ufmt.ic.alg3.cinema.entidades.Assento;
+import br.ufmt.ic.alg3.cinema.entidades.Sala;
 import br.ufmt.ic.alg3.cinema.persistencia.AssentoDAO;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -119,6 +120,21 @@ public class AssentoDAOImplArq implements AssentoDAO {
         
         return null;
 
+    }
+    
+    @Override 
+    public List<Assento> getBySala(Sala sala) {
+        carregarArquivo();
+        
+        List<Assento> lista = new ArrayList<>();
+        
+        for (Assento assento : assentos) {
+            if (assento.getSala().getId() == sala.getId()) {
+                lista.add(assento);
+            }
+        }
+        
+        return lista;
     }
 
     @Override

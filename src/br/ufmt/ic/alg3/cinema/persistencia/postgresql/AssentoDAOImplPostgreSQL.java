@@ -145,6 +145,46 @@ public class AssentoDAOImplPostgreSQL implements AssentoDAO {
         
         return a;
     }
+    
+    @Override
+    public List<Assento> getBySala(Sala sala) {
+        conectar();
+        
+        List<Assento> lista = new ArrayList<>();
+        
+        String sql = 
+                "SELECT \n" +
+                "	assento.id,\n" +
+                "	assento.numero\n" +
+                "	\n" +
+                "FROM assento\n" +
+                "INNER JOIN sala \n" +
+                "ON sala.id = assento.sala\n" +
+                "WHERE sala.id = " + sala.getId();
+        
+        try {
+            ResultSet rs = con.createStatement().executeQuery(sql);
+            
+            while (rs.next()) {
+                Assento a = new Assento();
+                
+                a.setId(rs.getInt("id"));
+                a.setNumero(rs.getInt("numero"));
+                
+                a.setSala(sala);
+                
+                lista.add(a);
+            }
+            
+            rs.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(AssentoDAOImplPostgreSQL.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        desconectar();
+        
+        return lista;
+    }
 
     @Override
     public List<Assento> listar() {
