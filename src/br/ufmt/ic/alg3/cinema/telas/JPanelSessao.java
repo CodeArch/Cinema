@@ -5,13 +5,12 @@
  */
 package br.ufmt.ic.alg3.cinema.telas;
 
-import br.ufmt.ic.alg3.cinema.entidades.Filme;
-import br.ufmt.ic.alg3.cinema.entidades.Sala;
 import br.ufmt.ic.alg3.cinema.entidades.Sessao;
 import br.ufmt.ic.alg3.cinema.persistencia.FilmeDAO;
 import br.ufmt.ic.alg3.cinema.persistencia.SalaDAO;
 import br.ufmt.ic.alg3.cinema.persistencia.SessaoDAO;
 import br.ufmt.ic.alg3.cinema.utils.DAOFactory;
+import java.sql.Timestamp;
 import java.time.Instant;
 import java.util.Date;
 import java.util.List;
@@ -93,6 +92,9 @@ public class JPanelSessao extends javax.swing.JPanel {
         jLabel3.setText("Sala:");
 
         jLabel4.setText("Data/Hora:");
+
+        jTextFieldId.setEditable(false);
+        jTextFieldId.setEnabled(false);
 
         jTableSessoes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -218,23 +220,28 @@ public class JPanelSessao extends javax.swing.JPanel {
         
         Sessao novaSessao = new Sessao();
         
-        List<Filme> filmes = filmeDAO.listar();
+        int id = 0;
+        try {
+            id = Integer.parseInt(jTextFieldId.getText());
+        } catch (NumberFormatException ex) {
+            id = 0;
+        }
         
-        int id = Integer.parseInt(jTextFieldId.getText());
         novaSessao.setId(id);
         
-        for (Filme filme : filmes) {
-            if (filme.getId() == Integer.parseInt(jTextFieldFilme.getText())) {
-                novaSessao.setFilme(filme);
-                break;
-            }
-        }
-
-        Sala placeholder = new Sala();
-        placeholder.setId(Integer.parseInt(jTextFieldSala.getText()));
-        novaSessao.setSala(placeholder);
+        int filmeId = Integer.parseInt(jTextFieldFilme.getText());
         
-        novaSessao.setDataHora((Date) jSpinnerDataHora.getValue());
+        novaSessao.setFilme(filmeDAO.getById(filmeId));
+
+        int salaId = Integer.parseInt(jTextFieldSala.getText());
+        
+        novaSessao.setSala(salaDAO.getById(salaId));
+        
+        Date data = (Date) jSpinnerDataHora.getValue();
+        
+        Timestamp ts = new Timestamp(data.getTime());
+        
+        novaSessao.setDataHora(ts);
         
         if (sessaoDAO.getById(id) == null) {
             sessaoDAO.inserir(novaSessao);
@@ -268,11 +275,11 @@ public class JPanelSessao extends javax.swing.JPanel {
             
             jTextFieldId.setText(Integer.toString(sessao.getId()));
             
-            if (sessao.getFilme() != null) {
-                jTextFieldFilme.setText(Integer.toString(sessao.getFilme().getId()));
-            }
+            jTextFieldFilme.setText(Integer.toString(sessao.getFilme().getId()));
             
             jTextFieldSala.setText(Integer.toString(sessao.getSala().getId()));
+            
+            jSpinnerDataHora.setValue(sessao.getDataHora());
             
         }
     }//GEN-LAST:event_jButtonEditarActionPerformed
