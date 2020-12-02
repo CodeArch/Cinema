@@ -13,12 +13,12 @@ import br.ufmt.ic.alg3.cinema.persistencia.IngressoDAO;
 import br.ufmt.ic.alg3.cinema.persistencia.SalaDAO;
 import br.ufmt.ic.alg3.cinema.persistencia.SessaoDAO;
 import br.ufmt.ic.alg3.cinema.persistencia.arquivo.IngressoDAOImplArq;
-import br.ufmt.ic.alg3.cinema.persistencia.arquivo.SessaoDAOImplArq;
 import br.ufmt.ic.alg3.cinema.persistencia.postgresql.AssentoDAOImplPostgreSQL;
 import br.ufmt.ic.alg3.cinema.persistencia.postgresql.CaixaDAOImplPostgreSQL;
 import br.ufmt.ic.alg3.cinema.persistencia.postgresql.FilmeDAOImplPostgreSQL;
 import br.ufmt.ic.alg3.cinema.persistencia.postgresql.FuncionarioDAOImplPostgreSQL;
 import br.ufmt.ic.alg3.cinema.persistencia.postgresql.SalaDAOImplPostgreSQL;
+import br.ufmt.ic.alg3.cinema.persistencia.postgresql.SessaoDAOImplPostgreSQL;
 
 /**
  *
@@ -51,7 +51,7 @@ public class DAOFactory {
     }
     
     public static SessaoDAO createSessaoDAO() {
-        return new SessaoDAOImplArq();
+        return new SessaoDAOImplPostgreSQL();
     }
     
 }
