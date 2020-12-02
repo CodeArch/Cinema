@@ -6,7 +6,7 @@
 package br.ufmt.ic.alg3.cinema.entidades;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.sql.Timestamp;
 
 /**
  *
@@ -17,7 +17,7 @@ public class Sessao implements Serializable {
     private int id;
     private Filme filme;
     private Sala sala;
-    private Date dataHora;
+    private Timestamp dataHora;
 
     public int getId() {
         return id;
@@ -43,11 +43,11 @@ public class Sessao implements Serializable {
         this.sala = sala;
     }
 
-    public Date getDataHora() {
+    public Timestamp getDataHora() {
         return dataHora;
     }
 
-    public void setDataHora(Date dataHora) {
+    public void setDataHora(Timestamp dataHora) {
         this.dataHora = dataHora;
     }
     

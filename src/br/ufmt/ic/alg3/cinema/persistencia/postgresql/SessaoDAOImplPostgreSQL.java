@@ -14,6 +14,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -151,7 +152,7 @@ public class SessaoDAOImplPostgreSQL implements SessaoDAO {
                 s.setFilme(filme);
                 s.setSala(sala);
 
-                s.setDataHora(rs.getDate("data_hora"));
+                s.setDataHora((Timestamp) rs.getObject("data_hora"));
             }
 
             rs.close();
@@ -209,7 +210,7 @@ public class SessaoDAOImplPostgreSQL implements SessaoDAO {
                 s.setFilme(filme);
                 s.setSala(sala);
 
-                s.setDataHora(rs.getDate("data_hora"));
+                s.setDataHora((Timestamp) rs.getObject("data_hora"));
                 
                 lista.add(s);
             }
