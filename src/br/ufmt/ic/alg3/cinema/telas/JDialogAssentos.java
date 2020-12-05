@@ -6,7 +6,9 @@
 package br.ufmt.ic.alg3.cinema.telas;
 
 import br.ufmt.ic.alg3.cinema.entidades.Assento;
+import br.ufmt.ic.alg3.cinema.entidades.Ingresso;
 import br.ufmt.ic.alg3.cinema.persistencia.AssentoDAO;
+import br.ufmt.ic.alg3.cinema.persistencia.IngressoDAO;
 import br.ufmt.ic.alg3.cinema.utils.DAOFactory;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
@@ -18,6 +20,7 @@ import javax.swing.table.DefaultTableModel;
 public class JDialogAssentos extends javax.swing.JDialog {
 
     private AssentoDAO assentoDAO = DAOFactory.createAssentoDAO();
+    private IngressoDAO ingressoDAO = DAOFactory.createIngressoDAO();
     
     /**
      * Creates new form JDialogAssentos
@@ -39,9 +42,16 @@ public class JDialogAssentos extends javax.swing.JDialog {
         }
         
         for (Assento assento : assentos) {
-            Object[] linha = new Object[3];
+            Object[] linha = new Object[4];
+            
             linha[0] = assento.getId();
-            linha[1] = assento.getSala().getId();
+            linha[1] = assento.getNumero();
+            linha[2] = assento.getSala().getId();
+            
+            Ingresso i = ingressoDAO.getByAssento(assento);
+            if (i != null) {
+                linha[3] = i.getId();
+            }
             
             tableModel.addRow(linha);
         }
@@ -67,11 +77,11 @@ public class JDialogAssentos extends javax.swing.JDialog {
 
             },
             new String [] {
-                "ID", "Sala", "Ingresso"
+                "ID", "Número", "Sala", "Ingresso"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
