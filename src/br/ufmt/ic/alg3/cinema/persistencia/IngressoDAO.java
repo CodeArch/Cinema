@@ -5,6 +5,7 @@
  */
 package br.ufmt.ic.alg3.cinema.persistencia;
 
+import br.ufmt.ic.alg3.cinema.entidades.Assento;
 import br.ufmt.ic.alg3.cinema.entidades.Ingresso;
 import java.util.List;
 
@@ -21,6 +22,8 @@ public interface IngressoDAO {
     public boolean remover(int id);
     
     public Ingresso getById(int id);
+    
+    public Ingresso getByAssento(Assento assento);
     
     public List<Ingresso> listar();
     

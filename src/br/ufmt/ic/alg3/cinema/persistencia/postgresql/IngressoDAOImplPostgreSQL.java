@@ -7,8 +7,6 @@ package br.ufmt.ic.alg3.cinema.persistencia.postgresql;
 
 import br.ufmt.ic.alg3.cinema.entidades.Assento;
 import br.ufmt.ic.alg3.cinema.entidades.Ingresso;
-import br.ufmt.ic.alg3.cinema.entidades.Sala;
-import br.ufmt.ic.alg3.cinema.entidades.Sessao;
 import br.ufmt.ic.alg3.cinema.persistencia.AssentoDAO;
 import br.ufmt.ic.alg3.cinema.persistencia.IngressoDAO;
 import br.ufmt.ic.alg3.cinema.persistencia.SessaoDAO;
@@ -157,6 +155,51 @@ public class IngressoDAOImplPostgreSQL implements IngressoDAO {
             
             rs.close();
             
+        } catch (SQLException ex) {
+            Logger.getLogger(IngressoDAOImplPostgreSQL.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        desconectar();
+        
+        return i;
+    }
+
+    @Override
+    public Ingresso getByAssento(Assento assento) {
+        Ingresso i = null;
+        
+        conectar();
+        
+        String sql =
+                "SELECT\n" +
+                "	ingresso.id,\n" +
+                "	ingresso.valor,\n" +
+                "	ingresso.meia,\n" +
+                "	ingresso.sessao,\n" +
+                "	ingresso.assento\n" +
+                "FROM	\n" +
+                "	ingresso\n" +
+                "INNER JOIN\n" +
+                "	assento\n" +
+                "ON\n" +
+                "	assento.id = ingresso.assento\n" +
+                "WHERE \n" +
+                "	assento.id = " + assento.getId() + ";";
+        
+        try {
+            ResultSet rs = con.createStatement().executeQuery(sql);
+            
+            if (rs.next()) {
+                i = new Ingresso();
+                
+                i.setId(rs.getInt("id"));
+                i.setMeia(rs.getBoolean("meia"));
+                i.setValor((BigDecimal) rs.getObject("valor"));
+                i.setSessao(sessaoDAO.getById(rs.getInt("sessao")));
+                i.setAssento(assentoDAO.getById(rs.getInt("assento")));
+            }
+            
+            rs.close();
         } catch (SQLException ex) {
             Logger.getLogger(IngressoDAOImplPostgreSQL.class.getName()).log(Level.SEVERE, null, ex);
         }

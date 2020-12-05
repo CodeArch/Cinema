@@ -5,6 +5,7 @@
  */
 package br.ufmt.ic.alg3.cinema.persistencia.arquivo;
 
+import br.ufmt.ic.alg3.cinema.entidades.Assento;
 import br.ufmt.ic.alg3.cinema.entidades.Ingresso;
 import br.ufmt.ic.alg3.cinema.persistencia.IngressoDAO;
 import java.io.FileInputStream;
@@ -116,6 +117,11 @@ public class IngressoDAOImplArq implements IngressoDAO{
         }
         
         return null;
+    }
+    
+    @Override
+    public Ingresso getByAssento(Assento assento) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
