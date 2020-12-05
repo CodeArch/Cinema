@@ -11,6 +11,7 @@ import br.ufmt.ic.alg3.cinema.persistencia.SalaDAO;
 import br.ufmt.ic.alg3.cinema.persistencia.SessaoDAO;
 import br.ufmt.ic.alg3.cinema.utils.DAOFactory;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.util.Date;
 import java.util.List;
@@ -37,6 +38,7 @@ public class JPanelSessao extends javax.swing.JPanel {
     private void carregarTabela() {
         List<Sessao> lista = sessaoDAO.listar();
         DefaultTableModel tableModel = (DefaultTableModel) jTableSessoes.getModel();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
         
         // Limpa a tabela
         int linhas = tableModel.getRowCount();
@@ -55,7 +57,7 @@ public class JPanelSessao extends javax.swing.JPanel {
             */
             linha[1] = sessao.getFilme().getId();
             linha[2] = sessao.getSala().getId();
-            linha[3] = sessao.getDataHora();
+            linha[3] = dateFormat.format(sessao.getDataHora());
             
             tableModel.addRow(linha);
         }
