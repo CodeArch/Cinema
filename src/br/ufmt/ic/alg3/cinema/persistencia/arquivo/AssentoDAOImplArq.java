@@ -107,6 +107,11 @@ public class AssentoDAOImplArq implements AssentoDAO {
         return false;
 
     }
+    
+    @Override
+    public boolean getAssentoOcupado(int id) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 
     @Override
     public Assento getById(int id) {

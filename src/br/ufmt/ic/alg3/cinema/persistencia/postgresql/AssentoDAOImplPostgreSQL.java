@@ -100,6 +100,38 @@ public class AssentoDAOImplPostgreSQL implements AssentoDAO {
         
         return false;
     }
+    
+    @Override
+    public boolean getAssentoOcupado(int id) {
+        conectar();
+        
+        String sql = 
+                "SELECT\n" +
+                "	assento.id,\n" +
+                "	ingresso.id\n" +
+                "FROM \n" +
+                "	assento\n" +
+                "INNER JOIN \n" +
+                "	ingresso\n" +
+                "ON \n" +
+                "	assento.id = ingresso.assento\n" +
+                "WHERE\n" +
+                "	assento.id = " + id + ";";
+        
+        try {
+            ResultSet rs = con.createStatement().executeQuery(sql);
+            
+            if (rs.next()) {
+                return true;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(AssentoDAOImplPostgreSQL.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            desconectar();
+        }
+        
+        return false;
+    }
 
     @Override
     public Assento getById(int id) {

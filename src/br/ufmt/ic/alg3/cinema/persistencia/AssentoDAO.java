@@ -21,6 +21,8 @@ public interface AssentoDAO {
     
     public boolean remover(int id);
     
+    public boolean getAssentoOcupado(int id);
+    
     public Assento getById(int id);
     
     public List<Assento> getBySala(Sala sala);
