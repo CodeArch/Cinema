@@ -47,18 +47,12 @@ public class JPanelIngresso extends javax.swing.JPanel {
         // Preencher a tabela
         for (Ingresso ingresso : ingressos) {
             Object[] linha = new Object[5];
-            linha[0] = ingresso.getId();
-            
-            if (ingresso.getSessao()!= null) {
-                linha[1] = ingresso.getSessao().getId();
-            }
 
+            linha[0] = ingresso.getId();
+            linha[1] = ingresso.getSessao().getId();
             linha[2] = ingresso.getValor();
             linha[3] = ingresso.getMeia();
-            
-            if (ingresso.getAssento() != null) {
-                linha[4] = ingresso.getAssento().getId();
-            }
+            linha[4] = ingresso.getAssento().getId();
             
             tableModel.addRow(linha);
         }
@@ -271,7 +265,9 @@ public class JPanelIngresso extends javax.swing.JPanel {
         Assento assento = assentoDAO.getById(idAssento);
         
         // Só é possível cadastrar um Ingresso caso seu Assento esteja vago
-        if (!assentoDAO.getAssentoOcupado(idAssento)) {
+        if (assentoDAO.getAssentoOcupado(idAssento)) {
+            System.out.println("Erro: Assento já reservado");
+        } else {
             novoIngresso.setAssento(assento);
 
             if (ingressoDAO.getById(id) == null) {
@@ -282,8 +278,6 @@ public class JPanelIngresso extends javax.swing.JPanel {
             
             jButtonLimparActionPerformed(evt);
             carregarTabela();
-        } else {
-            System.out.println("Erro: Assento já reservado");
         }
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 
@@ -316,8 +310,6 @@ public class JPanelIngresso extends javax.swing.JPanel {
         
         for (int linha : linhas) {
             int id = (int) jTableIngresso.getValueAt(linha, 0);
-            int idAssento = (int) jTableIngresso.getValueAt(linha, 4);
-            int idSessao = (int) jTableIngresso.getValueAt(linha, 1);
             
             ingressoDAO.remover(id);
         }
