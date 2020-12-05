@@ -15,10 +15,10 @@ import java.math.BigDecimal;
 public class Ingresso implements Serializable {
  
     private int id;
-    private Sessao sessao;
     private BigDecimal valor;
-    private char tipo; // I para inteira e M para meia
-    private Assento assentoReservado;
+    private boolean meia; 
+    private Sessao sessao;
+    private Assento assento;
 
     public int getId() {
         return id;
@@ -44,20 +44,20 @@ public class Ingresso implements Serializable {
         this.valor = valor;
     }
 
-    public char getTipo() {
-        return tipo;
+    public boolean getMeia() {
+        return meia;
     }
 
-    public void setTipo(char tipo) {
-        this.tipo = tipo;
+    public void setMeia(boolean meia) {
+        this.meia = meia;
     }
 
-    public Assento getAssentoReservado() {
-        return assentoReservado;
+    public Assento getAssento() {
+        return assento;
     }
 
-    public void setAssentoReservado(Assento assentoReservado) {
-        this.assentoReservado = assentoReservado;
+    public void setAssento(Assento assento) {
+        this.assento = assento;
     }
     
     
