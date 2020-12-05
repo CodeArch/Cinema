@@ -54,10 +54,10 @@ public class JPanelIngresso extends javax.swing.JPanel {
             }
 
             linha[2] = ingresso.getValor();
-            linha[3] = ingresso.getTipo();
+            linha[3] = ingresso.getMeia();
             
-            if (ingresso.getAssentoReservado() != null) {
-                linha[4] = ingresso.getAssentoReservado().getId();
+            if (ingresso.getAssento() != null) {
+                linha[4] = ingresso.getAssento().getId();
             }
             
             tableModel.addRow(linha);
@@ -101,6 +101,9 @@ public class JPanelIngresso extends javax.swing.JPanel {
         jLabel4.setText("Tipo:");
 
         jLabel5.setText("Assento:");
+
+        jTextFieldId.setEditable(false);
+        jTextFieldId.setEnabled(false);
 
         jTextFieldValor.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
 
@@ -243,7 +246,13 @@ public class JPanelIngresso extends javax.swing.JPanel {
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
         Ingresso novoIngresso = new Ingresso();
         
-        int id = Integer.parseInt(jTextFieldId.getText());
+        int id = 0;
+        try {
+            id = Integer.parseInt(jTextFieldId.getText());
+        } catch (NumberFormatException ex) {
+            id = 0;
+        }
+        
         novoIngresso.setId(id);
 
         int idSessao = Integer.parseInt(jTextFieldSessao.getText());
@@ -253,39 +262,24 @@ public class JPanelIngresso extends javax.swing.JPanel {
         novoIngresso.setValor(valor);
         
         if (jRadioButtonInteira.isSelected()) {
-            novoIngresso.setTipo('I');
+            novoIngresso.setMeia(false);
         } else {
-            novoIngresso.setTipo('M');
+            novoIngresso.setMeia(true);
         }
         
         int idAssento = Integer.parseInt(jTextFieldAssento.getText());
-        Assento assento = assentoDAO.getById(idAssento, sessaoDAO.getById(idSessao).getSala());
+        Assento assento = assentoDAO.getById(idAssento);
         
         // Só é possível cadastrar um Ingresso caso seu Assento esteja vago
-        if (assento.getIngresso() == null) {
-            novoIngresso.setAssentoReservado(assento);
+        if (!assentoDAO.getAssentoOcupado(idAssento)) {
+            novoIngresso.setAssento(assento);
 
             if (ingressoDAO.getById(id) == null) {
                 ingressoDAO.inserir(novoIngresso);
-                
-                // Vinculando novo assento ao Ingresso
-                assento.setIngresso(novoIngresso);
-                assentoDAO.editar(assento);                
             } else {
-                // Desvinculando o Ingresso do Assento anterior
-                Ingresso ingresso = ingressoDAO.getById(id);
-                Assento assentoAnterior = ingresso.getAssentoReservado();
-                assentoAnterior.setIngresso(null);
-                assentoDAO.editar(assentoAnterior);
-                
                 ingressoDAO.editar(novoIngresso);
-                
-                // Vinculando novo assento ao Ingresso
-                assento.setIngresso(novoIngresso);
-                assentoDAO.editar(assento);     
             }
-
-
+            
             jButtonLimparActionPerformed(evt);
             carregarTabela();
         } else {
@@ -303,25 +297,17 @@ public class JPanelIngresso extends javax.swing.JPanel {
             
             jTextFieldId.setText(Integer.toString(ingresso.getId()));
             
-            if (ingresso.getSessao() != null) {
-                jTextFieldSessao.setText(Integer.toString(ingresso.getSessao().getId()));
-            } else {
-                jTextFieldSessao.setText("");
-            }
+            jTextFieldSessao.setText(Integer.toString(ingresso.getSessao().getId()));
             
             jTextFieldValor.setText(ingresso.getValor().toString());
             
-            if (ingresso.getTipo() == 'I') {
-                jRadioButtonInteira.setSelected(true);
-            } else {
+            if (ingresso.getMeia()) {
                 jRadioButtonMeia.setSelected(true);
+            } else {
+                jRadioButtonInteira.setSelected(true);
             }
             
-            if (ingresso.getAssentoReservado() != null) {
-                jTextFieldAssento.setText(Integer.toString(ingresso.getAssentoReservado().getId()));
-            } else {
-                jTextFieldAssento.setText("");
-            }
+            jTextFieldAssento.setText(Integer.toString(ingresso.getAssento().getId()));
         }
     }//GEN-LAST:event_jButtonEditarActionPerformed
 
@@ -332,11 +318,6 @@ public class JPanelIngresso extends javax.swing.JPanel {
             int id = (int) jTableIngresso.getValueAt(linha, 0);
             int idAssento = (int) jTableIngresso.getValueAt(linha, 4);
             int idSessao = (int) jTableIngresso.getValueAt(linha, 1);
-            
-            // Desvinculando o Ingresso do Assento
-            Assento assento = assentoDAO.getById(idAssento, sessaoDAO.getById(idSessao).getSala());
-            assento.setIngresso(null);
-            assentoDAO.editar(assento);
             
             ingressoDAO.remover(id);
         }
