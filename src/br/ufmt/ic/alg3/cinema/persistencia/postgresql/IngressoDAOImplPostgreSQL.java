@@ -96,6 +96,8 @@ public class IngressoDAOImplPostgreSQL implements IngressoDAO {
             ps.setInt(3, ingresso.getSessao().getId());
             ps.setInt(4, ingresso.getAssento().getId());
             
+            ps.setInt(5, ingresso.getId());
+            
             ps.execute();
         } catch (SQLException ex) {
             Logger.getLogger(IngressoDAOImplPostgreSQL.class.getName()).log(Level.SEVERE, null, ex);
