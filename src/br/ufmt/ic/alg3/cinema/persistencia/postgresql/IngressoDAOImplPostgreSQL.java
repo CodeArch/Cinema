@@ -185,6 +185,8 @@ public class IngressoDAOImplPostgreSQL implements IngressoDAO {
                 i.setMeia(rs.getBoolean("meia"));
                 i.setAssento(assentoDAO.getById(rs.getInt("assento")));
                 i.setSessao(sessaoDAO.getById(rs.getInt("sessao")));
+                
+                lista.add(i);
             }
             
             rs.close();
