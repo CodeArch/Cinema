@@ -44,6 +44,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
         jMenuItemListarFilmes = new javax.swing.JMenuItem();
         jMenuItemListarSalas = new javax.swing.JMenuItem();
         jMenuItemListarSessoes = new javax.swing.JMenuItem();
+        jMenuItemListarFuncionários = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuItemSobre = new javax.swing.JMenuItem();
 
@@ -151,6 +152,15 @@ public class JFramePrincipal extends javax.swing.JFrame {
             }
         });
         jMenu2.add(jMenuItemListarSessoes);
+
+        jMenuItemListarFuncionários.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_T, java.awt.event.InputEvent.SHIFT_MASK));
+        jMenuItemListarFuncionários.setText("Listar Funcionários");
+        jMenuItemListarFuncionários.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemListarFuncionáriosActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItemListarFuncionários);
 
         jMenuBar1.add(jMenu2);
 
@@ -288,6 +298,16 @@ public class JFramePrincipal extends javax.swing.JFrame {
         sobre.setVisible(true);
     }//GEN-LAST:event_jMenuItemSobreActionPerformed
 
+    private void jMenuItemListarFuncionáriosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemListarFuncionáriosActionPerformed
+        try {
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            JDialogFuncionarios dialog = new JDialogFuncionarios(this, false);
+            dialog.setVisible(true);
+        } finally {
+            this.setCursor(Cursor.getDefaultCursor());
+        }
+    }//GEN-LAST:event_jMenuItemListarFuncionáriosActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -335,6 +355,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItemIngresso;
     private javax.swing.JMenuItem jMenuItemListarAssentos;
     private javax.swing.JMenuItem jMenuItemListarFilmes;
+    private javax.swing.JMenuItem jMenuItemListarFuncionários;
     private javax.swing.JMenuItem jMenuItemListarSalas;
     private javax.swing.JMenuItem jMenuItemListarSessoes;
     private javax.swing.JMenuItem jMenuItemSala;
