@@ -44,6 +44,8 @@ public class JFramePrincipal extends javax.swing.JFrame {
         jMenuItemListarFilmes = new javax.swing.JMenuItem();
         jMenuItemListarSalas = new javax.swing.JMenuItem();
         jMenuItemListarSessoes = new javax.swing.JMenuItem();
+        jMenu3 = new javax.swing.JMenu();
+        jMenuItemSobre = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sistema de Gerenciamento de Cinema");
@@ -151,6 +153,18 @@ public class JFramePrincipal extends javax.swing.JFrame {
         jMenu2.add(jMenuItemListarSessoes);
 
         jMenuBar1.add(jMenu2);
+
+        jMenu3.setText("Ajuda");
+
+        jMenuItemSobre.setText("Sobre");
+        jMenuItemSobre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemSobreActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItemSobre);
+
+        jMenuBar1.add(jMenu3);
 
         setJMenuBar(jMenuBar1);
 
@@ -269,6 +283,11 @@ public class JFramePrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jMenuItemListarSessoesActionPerformed
 
+    private void jMenuItemSobreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemSobreActionPerformed
+        JDialogSobre sobre = new JDialogSobre(this, false);
+        sobre.setVisible(true);
+    }//GEN-LAST:event_jMenuItemSobreActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -308,6 +327,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItemCaixa;
     private javax.swing.JMenuItem jMenuItemFilme;
@@ -319,6 +339,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItemListarSessoes;
     private javax.swing.JMenuItem jMenuItemSala;
     private javax.swing.JMenuItem jMenuItemSessao;
+    private javax.swing.JMenuItem jMenuItemSobre;
     private javax.swing.JPanel jPanelConteudo;
     // End of variables declaration//GEN-END:variables
 }
