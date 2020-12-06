@@ -59,7 +59,6 @@ public class JFramePrincipal extends javax.swing.JFrame {
 
         jMenu1.setText("Arquivo");
 
-        jMenuItemFilme.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItemFilme.setText("Filme");
         jMenuItemFilme.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -68,7 +67,6 @@ public class JFramePrincipal extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItemFilme);
 
-        jMenuItemSessao.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItemSessao.setText("Sessão");
         jMenuItemSessao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -77,7 +75,6 @@ public class JFramePrincipal extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItemSessao);
 
-        jMenuItemSala.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItemSala.setText("Sala");
         jMenuItemSala.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -86,7 +83,6 @@ public class JFramePrincipal extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItemSala);
 
-        jMenuItemIngresso.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_I, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItemIngresso.setText("Ingresso");
         jMenuItemIngresso.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -95,7 +91,6 @@ public class JFramePrincipal extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItemIngresso);
 
-        jMenuItemCaixa.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItemCaixa.setText("Caixa");
         jMenuItemCaixa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -104,7 +99,6 @@ public class JFramePrincipal extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItemCaixa);
 
-        jMenuItemFuncionario.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_T, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItemFuncionario.setText("Funcionário");
         jMenuItemFuncionario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -117,7 +111,6 @@ public class JFramePrincipal extends javax.swing.JFrame {
 
         jMenu2.setText("Exibir");
 
-        jMenuItemListarAssentos.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
         jMenuItemListarAssentos.setText("Listar Assentos");
         jMenuItemListarAssentos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -126,7 +119,6 @@ public class JFramePrincipal extends javax.swing.JFrame {
         });
         jMenu2.add(jMenuItemListarAssentos);
 
-        jMenuItemListarFilmes.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.event.InputEvent.SHIFT_MASK));
         jMenuItemListarFilmes.setText("Listar Filmes");
         jMenuItemListarFilmes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -135,7 +127,6 @@ public class JFramePrincipal extends javax.swing.JFrame {
         });
         jMenu2.add(jMenuItemListarFilmes);
 
-        jMenuItemListarSalas.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.SHIFT_MASK));
         jMenuItemListarSalas.setText("Listar Salas");
         jMenuItemListarSalas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -144,7 +135,6 @@ public class JFramePrincipal extends javax.swing.JFrame {
         });
         jMenu2.add(jMenuItemListarSalas);
 
-        jMenuItemListarSessoes.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.SHIFT_MASK));
         jMenuItemListarSessoes.setText("Listar Sessões");
         jMenuItemListarSessoes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -153,7 +143,6 @@ public class JFramePrincipal extends javax.swing.JFrame {
         });
         jMenu2.add(jMenuItemListarSessoes);
 
-        jMenuItemListarFuncionários.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_T, java.awt.event.InputEvent.SHIFT_MASK));
         jMenuItemListarFuncionários.setText("Listar Funcionários");
         jMenuItemListarFuncionários.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

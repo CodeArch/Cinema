@@ -11,9 +11,6 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItemFilme">
               <Properties>
-                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
-                  <KeyStroke key="Ctrl+F"/>
-                </Property>
                 <Property name="text" type="java.lang.String" value="Filme"/>
               </Properties>
               <Events>
@@ -22,9 +19,6 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItemSessao">
               <Properties>
-                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
-                  <KeyStroke key="Ctrl+S"/>
-                </Property>
                 <Property name="text" type="java.lang.String" value="Sess&#xe3;o"/>
               </Properties>
               <Events>
@@ -33,9 +27,6 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItemSala">
               <Properties>
-                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
-                  <KeyStroke key="Ctrl+A"/>
-                </Property>
                 <Property name="text" type="java.lang.String" value="Sala"/>
               </Properties>
               <Events>
@@ -44,9 +35,6 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItemIngresso">
               <Properties>
-                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
-                  <KeyStroke key="Ctrl+I"/>
-                </Property>
                 <Property name="text" type="java.lang.String" value="Ingresso"/>
               </Properties>
               <Events>
@@ -55,9 +43,6 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItemCaixa">
               <Properties>
-                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
-                  <KeyStroke key="Ctrl+C"/>
-                </Property>
                 <Property name="text" type="java.lang.String" value="Caixa"/>
               </Properties>
               <Events>
@@ -66,9 +51,6 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItemFuncionario">
               <Properties>
-                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
-                  <KeyStroke key="Ctrl+T"/>
-                </Property>
                 <Property name="text" type="java.lang.String" value="Funcion&#xe1;rio"/>
               </Properties>
               <Events>
@@ -84,9 +66,6 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItemListarAssentos">
               <Properties>
-                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
-                  <KeyStroke key="Shift+Ctrl+A"/>
-                </Property>
                 <Property name="text" type="java.lang.String" value="Listar Assentos"/>
               </Properties>
               <Events>
@@ -95,9 +74,6 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItemListarFilmes">
               <Properties>
-                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
-                  <KeyStroke key="Shift+F"/>
-                </Property>
                 <Property name="text" type="java.lang.String" value="Listar Filmes"/>
               </Properties>
               <Events>
@@ -106,9 +82,6 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItemListarSalas">
               <Properties>
-                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
-                  <KeyStroke key="Shift+A"/>
-                </Property>
                 <Property name="text" type="java.lang.String" value="Listar Salas"/>
               </Properties>
               <Events>
@@ -117,9 +90,6 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItemListarSessoes">
               <Properties>
-                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
-                  <KeyStroke key="Shift+S"/>
-                </Property>
                 <Property name="text" type="java.lang.String" value="Listar Sess&#xf5;es"/>
               </Properties>
               <Events>
@@ -128,9 +98,6 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItemListarFuncion&#xe1;rios">
               <Properties>
-                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
-                  <KeyStroke key="Shift+T"/>
-                </Property>
                 <Property name="text" type="java.lang.String" value="Listar Funcion&#xe1;rios"/>
               </Properties>
               <Events>
