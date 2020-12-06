@@ -268,7 +268,9 @@ public class JPanelIngresso extends javax.swing.JPanel {
         Assento assento = assentoDAO.getById(idAssento);
         
         // Só é possível cadastrar um Ingresso caso seu Assento esteja vago
-        if (assentoDAO.getAssentoOcupado(idAssento)) {
+        if (assento == null) {
+          JOptionPane.showMessageDialog(this, "O assento informado não existe", "Erro", JOptionPane.ERROR_MESSAGE);
+        } else if (assentoDAO.getAssentoOcupado(idAssento)) {
             JOptionPane.showMessageDialog(this, "Assento já reservado", "Erro", JOptionPane.ERROR_MESSAGE);
         } else if (assento.getSala().getId() != sessao.getSala().getId()) {
             JOptionPane.showMessageDialog(this, "O assento informado não pertence à sala da sessão", "Erro", JOptionPane.ERROR_MESSAGE);
