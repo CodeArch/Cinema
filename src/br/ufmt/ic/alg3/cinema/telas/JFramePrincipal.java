@@ -41,6 +41,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
         jMenuItemFuncionario = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItemListarAssentos = new javax.swing.JMenuItem();
+        jMenuItemListarFilmes = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(800, 600));
@@ -111,6 +112,14 @@ public class JFramePrincipal extends javax.swing.JFrame {
             }
         });
         jMenu2.add(jMenuItemListarAssentos);
+
+        jMenuItemListarFilmes.setText("Listar Filmes");
+        jMenuItemListarFilmes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemListarFilmesActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItemListarFilmes);
 
         jMenuBar1.add(jMenu2);
 
@@ -201,6 +210,16 @@ public class JFramePrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jMenuItemListarAssentosActionPerformed
 
+    private void jMenuItemListarFilmesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemListarFilmesActionPerformed
+        try {
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            JDialogFilmes dialog = new JDialogFilmes(this, false);
+            dialog.setVisible(true);
+        } finally {
+            this.setCursor(Cursor.getDefaultCursor());
+        }
+    }//GEN-LAST:event_jMenuItemListarFilmesActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -246,6 +265,7 @@ public class JFramePrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItemFuncionario;
     private javax.swing.JMenuItem jMenuItemIngresso;
     private javax.swing.JMenuItem jMenuItemListarAssentos;
+    private javax.swing.JMenuItem jMenuItemListarFilmes;
     private javax.swing.JMenuItem jMenuItemSala;
     private javax.swing.JMenuItem jMenuItemSessao;
     private javax.swing.JPanel jPanelConteudo;
