@@ -1,4 +1,4 @@
 /build/
 /dist/
 *.dat
-/nbproject/private/private.xml
+nbproject/private/private.xml
