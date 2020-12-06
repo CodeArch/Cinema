@@ -48,13 +48,14 @@ public class JPanelIngresso extends javax.swing.JPanel {
         
         // Preencher a tabela
         for (Ingresso ingresso : ingressos) {
-            Object[] linha = new Object[5];
+            Object[] linha = new Object[6];
 
             linha[0] = ingresso.getId();
             linha[1] = ingresso.getSessao().getId();
-            linha[2] = ingresso.getValor();
-            linha[3] = ingresso.getMeia();
-            linha[4] = ingresso.getAssento().getId();
+            linha[2] = "R$ " + ingresso.getValor();
+            linha[3] = ingresso.getMeia() ? "Meia" : "Inteira";
+            linha[4] = ingresso.getAssento().getNumero();
+            linha[5] = ingresso.getAssento().getSala().getNome();
             
             tableModel.addRow(linha);
         }
@@ -115,11 +116,11 @@ public class JPanelIngresso extends javax.swing.JPanel {
 
             },
             new String [] {
-                "ID", "Sessão", "Valor", "Tipo", "Assento"
+                "ID", "Sessão", "Valor", "Tipo", "Assento", "Sala"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
