@@ -37,6 +37,7 @@ public class JDialogSobre extends javax.swing.JDialog {
         jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Sobre");
         setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("sansserif", 1, 24)); // NOI18N

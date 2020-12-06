@@ -63,6 +63,7 @@ public class JDialogSalas extends javax.swing.JDialog {
         jButtonAtualizar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Salas");
 
         jTableSala.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
