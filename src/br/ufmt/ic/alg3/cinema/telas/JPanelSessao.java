@@ -55,8 +55,8 @@ public class JPanelSessao extends javax.swing.JPanel {
                 deveria ocorrer) mostrar somente uma célula vazia. Caso contrário
                 o nome do filme será mostrado
             */
-            linha[1] = sessao.getFilme().getId();
-            linha[2] = sessao.getSala().getId();
+            linha[1] = sessao.getFilme().getNome();
+            linha[2] = sessao.getSala().getNome();
             linha[3] = dateFormat.format(sessao.getDataHora());
             
             tableModel.addRow(linha);

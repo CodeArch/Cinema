@@ -43,7 +43,7 @@ public class JPanelFilme extends javax.swing.JPanel {
             linha[0] = filme.getId();
             linha[1] = filme.getNome();
             linha[2] = filme.getDuracao();
-            linha[3] = filme.isFilme3d();
+            linha[3] = filme.isFilme3d() ? "Sim" : "Não";
             
             tableModel.addRow(linha);
         }
@@ -114,7 +114,7 @@ public class JPanelFilme extends javax.swing.JPanel {
 
             },
             new String [] {
-                "ID", "Nome", "Duração", "Filme3D"
+                "ID", "Nome", "Duração (Minutos)", "3D"
             }
         ) {
             boolean[] canEdit = new boolean [] {
