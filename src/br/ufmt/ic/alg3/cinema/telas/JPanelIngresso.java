@@ -7,12 +7,14 @@ package br.ufmt.ic.alg3.cinema.telas;
 
 import br.ufmt.ic.alg3.cinema.entidades.Assento;
 import br.ufmt.ic.alg3.cinema.entidades.Ingresso;
+import br.ufmt.ic.alg3.cinema.entidades.Sessao;
 import br.ufmt.ic.alg3.cinema.persistencia.AssentoDAO;
 import br.ufmt.ic.alg3.cinema.persistencia.IngressoDAO;
 import br.ufmt.ic.alg3.cinema.persistencia.SessaoDAO;
 import br.ufmt.ic.alg3.cinema.utils.DAOFactory;
 import java.math.BigDecimal;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -250,7 +252,8 @@ public class JPanelIngresso extends javax.swing.JPanel {
         novoIngresso.setId(id);
 
         int idSessao = Integer.parseInt(jTextFieldSessao.getText());
-        novoIngresso.setSessao(sessaoDAO.getById(idSessao));
+        Sessao sessao = sessaoDAO.getById(idSessao);
+        novoIngresso.setSessao(sessao);
         
         BigDecimal valor = new BigDecimal(jTextFieldValor.getText());
         novoIngresso.setValor(valor);
@@ -266,7 +269,9 @@ public class JPanelIngresso extends javax.swing.JPanel {
         
         // Só é possível cadastrar um Ingresso caso seu Assento esteja vago
         if (assentoDAO.getAssentoOcupado(idAssento)) {
-            System.out.println("Erro: Assento já reservado");
+            JOptionPane.showMessageDialog(this, "Assento já reservado", "Erro", JOptionPane.ERROR_MESSAGE);
+        } else if (assento.getSala().getId() != sessao.getSala().getId()) {
+            JOptionPane.showMessageDialog(this, "O assento informado não pertence à sala da sessão", "Erro", JOptionPane.ERROR_MESSAGE);
         } else {
             novoIngresso.setAssento(assento);
 
