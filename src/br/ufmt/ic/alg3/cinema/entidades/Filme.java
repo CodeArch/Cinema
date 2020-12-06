@@ -16,7 +16,7 @@ public class Filme implements Serializable {
     private int id;
     private String nome;
     private int duracao; // Em minutos
-    private boolean filme3d; // 0 para 2D e 1 para 3D
+    private boolean filme3d;
 
     public int getId() {
         return id;
