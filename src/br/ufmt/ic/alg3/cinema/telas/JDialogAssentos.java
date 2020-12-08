@@ -42,15 +42,16 @@ public class JDialogAssentos extends javax.swing.JDialog {
         }
         
         for (Assento assento : assentos) {
-            Object[] linha = new Object[4];
+            Object[] linha = new Object[5];
             
             linha[0] = assento.getId();
             linha[1] = assento.getNumero();
             linha[2] = assento.getSala().getId();
+            linha[3] = assento.getSala().getNome();
             
             Ingresso i = ingressoDAO.getByAssento(assento);
             if (i != null) {
-                linha[3] = i.getId();
+                linha[4] = i.getId();
             }
             
             tableModel.addRow(linha);
@@ -78,17 +79,18 @@ public class JDialogAssentos extends javax.swing.JDialog {
 
             },
             new String [] {
-                "ID", "Número", "Sala", "Ingresso"
+                "ID", "Número do Assento", "ID Sala", "Nome da Sala", "Ingresso"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
+        jTableAssento.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(jTableAssento);
 
         jButtonAtualizar.setText("Atualizar");
@@ -104,7 +106,7 @@ public class JDialogAssentos extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 367, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 645, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonAtualizar)
                 .addGap(7, 7, 7))
